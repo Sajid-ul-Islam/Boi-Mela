@@ -307,8 +307,68 @@ html, body {
   font-size: clamp(14px, 0.55vw + 12px, 17px);
 }
 
-/* The hero / splash uses fixed inline font sizes — override them with fluid clamps
-   so they scale smoothly instead of snapping at a single breakpoint. */
+/* ---- Global responsiveness safeguards ----
+   The Expo web #root is display:flex, so .app-container is a flex item with
+   min-width:auto by default — it refuses to shrink below its widest content,
+   which can balloon the layout on small screens. Force everything to shrink
+   and never exceed the viewport. */
+* {
+  box-sizing: border-box;
+}
+img,
+svg,
+video,
+canvas {
+  max-width: 100%;
+  height: auto;
+}
+
+html,
+body {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+#root {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+.app-container,
+.main-content,
+.header-inner,
+.splash-hero,
+.book-grid,
+.stall-grid,
+.wishlist-grid,
+.splash-metrics {
+  max-width: 100%;
+}
+
+/* allow flex children to shrink below their content size */
+.app-container,
+.main-content,
+.header-inner,
+.splash-hero > div,
+.book-grid > *,
+.stall-grid > *,
+.wishlist-grid > * {
+  min-width: 0;
+}
+
+/* grids must be able to shrink their tracks on tiny screens */
+.book-grid,
+.stall-grid,
+.wishlist-grid {
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 240px), 1fr)) !important;
+}
+.splash-hero > div {
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)) !important;
+}
+
+/* Generic fluid headings for any inline-styled h2/h3 inside content */
 .splash-hero {
   padding: clamp(24px, 4vw, 48px) clamp(16px, 3vw, 32px) !important;
 }
