@@ -1,20 +1,6 @@
 import React, { useState } from 'react';
 import { useApp } from '../context/AppContext';
-import { 
-  BookOpen, 
-  Store, 
-  Heart, 
-  Search, 
-  Filter, 
-  Star, 
-  MapPin, 
-  Sparkles, 
-  X, 
-  PlusCircle, 
-  Eye, 
-  BellRing,
-  ArrowUpDown
-} from 'lucide-react';
+import { ArrowUpDown, BellRing, BookOpen, Button, Div, Eye, Filter, H3, H4, Heart, Img, Info, MapPin, PlusCircle, Search, Select, Span, Sparkles, Star, Store, X } from '../html';
 
 export const VisitorView = () => {
   const { 
@@ -77,10 +63,10 @@ export const VisitorView = () => {
   const wishlistedBooks = books.filter(b => wishlist.includes(b.id));
 
   return (
-    <div className="animate-fade-in">
+    <Div className="animate-fade-in">
       
       {/* Top Filter & View Control Bar */}
-      <div style={{
+      <Div style={{
         display: 'flex',
         justifyContent: 'space-between',
         alignItems: 'center',
@@ -89,7 +75,7 @@ export const VisitorView = () => {
         marginBottom: '24px'
       }}>
         {/* Primary View Tabs */}
-        <div style={{
+        <Div style={{
           display: 'flex',
           gap: '6px',
           background: 'var(--bg-secondary)',
@@ -97,38 +83,44 @@ export const VisitorView = () => {
           borderRadius: 'var(--radius-md)',
           border: '1px solid var(--border-color)'
         }}>
-          <button 
+          <Button 
             className={`btn btn-sm ${activeTab === 'books' ? 'btn-primary' : 'btn-secondary'}`}
-            onClick={() => setActiveTab('books')}
+            onPress={() => setActiveTab('books')}
           >
             <BookOpen size={16} />
-            <span>{lang === 'bn' ? `বইসমূহ (${filteredBooks.length})` : `Books (${filteredBooks.length})`}</span>
-          </button>
+            <Span>{lang === 'bn' ? `বইসমূহ (${filteredBooks.length})` : `Books (${filteredBooks.length})`}</Span>
+          </Button>
 
-          <button 
+          <Button 
             className={`btn btn-sm ${activeTab === 'stalls' ? 'btn-primary' : 'btn-secondary'}`}
-            onClick={() => setActiveTab('stalls')}
+            onPress={() => setActiveTab('stalls')}
           >
             <Store size={16} />
-            <span>{lang === 'bn' ? `স্টল ডিরেক্টরি (${filteredStalls.length})` : `Stalls (${filteredStalls.length})`}</span>
-          </button>
+            <Span>{lang === 'bn' ? `স্টল ডিরেক্টরি (${filteredStalls.length})` : `Stalls (${filteredStalls.length})`}</Span>
+          </Button>
 
-          <button 
+          <Button 
             className={`btn btn-sm ${activeTab === 'wishlist' ? 'btn-gold' : 'btn-secondary'}`}
-            onClick={() => setActiveTab('wishlist')}
+            onPress={() => setActiveTab('wishlist')}
           >
             <Heart size={16} fill={wishlist.length > 0 ? '#f43f5e' : 'none'} color={wishlist.length > 0 ? '#f43f5e' : 'currentColor'} />
-            <span>{lang === 'bn' ? `পছন্দের তালিকা (${wishlist.length})` : `Wishlist (${wishlist.length})`}</span>
-          </button>
-        </div>
+            <Span>{lang === 'bn' ? `পছন্দের তালিকা (${wishlist.length})` : `Wishlist (${wishlist.length})`}</Span>
+          </Button>
+        </Div>
 
         {/* Sort selector for Books tab */}
         {activeTab === 'books' && (
-          <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+          <Div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
             <ArrowUpDown size={14} color="var(--text-muted)" />
-            <select
+            <Select
               value={sortBy}
-              onChange={(e) => setSortBy(e.target.value)}
+              onChange={setSortBy}
+              options={[
+                { value: 'popular', label: lang === 'bn' ? 'জনপ্রিয়তা অনুসারে' : 'Sort by Rating' },
+                { value: 'price-asc', label: lang === 'bn' ? 'মূল্য: কম থেকে বেশি' : 'Price: Low to High' },
+                { value: 'price-desc', label: lang === 'bn' ? 'মূল্য: বেশি থেকে কম' : 'Price: High to Low' },
+                { value: 'name', label: lang === 'bn' ? 'নাম অনুসারে (অ-আ)' : 'Title A-Z' },
+              ]}
               style={{
                 padding: '8px 12px',
                 borderRadius: 'var(--radius-sm)',
@@ -138,19 +130,14 @@ export const VisitorView = () => {
                 fontSize: '0.85rem',
                 outline: 'none'
               }}
-            >
-              <option value="popular">{lang === 'bn' ? 'জনপ্রিয়তা অনুসারে' : 'Sort by Rating'}</option>
-              <option value="price-asc">{lang === 'bn' ? 'মূল্য: কম থেকে বেশি' : 'Price: Low to High'}</option>
-              <option value="price-desc">{lang === 'bn' ? 'মূল্য: বেশি থেকে কম' : 'Price: High to Low'}</option>
-              <option value="name">{lang === 'bn' ? 'নাম অনুসারে (অ-আ)' : 'Title A-Z'}</option>
-            </select>
-          </div>
+            />
+          </Div>
         )}
-      </div>
+      </Div>
 
       {/* Genre Filter Chips (When viewing Books) */}
       {activeTab === 'books' && (
-        <div style={{
+        <Div style={{
           display: 'flex',
           gap: '8px',
           overflowX: 'auto',
@@ -158,9 +145,9 @@ export const VisitorView = () => {
           marginBottom: '24px'
         }}>
           {genres.map(g => (
-            <button
+            <Button
               key={g.id}
-              onClick={() => setSelectedGenre(g.id)}
+              onPress={() => setSelectedGenre(g.id)}
               style={{
                 padding: '6px 16px',
                 borderRadius: 'var(--radius-full)',
@@ -175,16 +162,16 @@ export const VisitorView = () => {
               }}
             >
               {lang === 'bn' ? g.bn : g.en}
-            </button>
+            </Button>
           ))}
-        </div>
+        </Div>
       )}
 
       {/* ----------------- BOOKS TAB CONTENT ----------------- */}
       {activeTab === 'books' && (
-        <div>
+        <Div>
           {filteredBooks.length === 0 ? (
-            <div style={{
+            <Div style={{
               textAlign: 'center',
               padding: '60px 20px',
               background: 'var(--bg-card)',
@@ -192,18 +179,18 @@ export const VisitorView = () => {
               border: '1px dashed var(--border-color)'
             }}>
               <Search size={48} color="var(--text-muted)" style={{ marginBottom: '16px' }} />
-              <h3 style={{ fontSize: '1.2rem', marginBottom: '8px' }}>
+              <H3 style={{ fontSize: '1.2rem', marginBottom: '8px' }}>
                 {lang === 'bn' ? 'কোনো বই পাওয়া যায়নি' : 'No books found'}
-              </h3>
-              <p style={{ color: 'var(--text-muted)', marginBottom: '20px' }}>
+              </H3>
+              <P style={{ color: 'var(--text-muted)', marginBottom: '20px' }}>
                 {lang === 'bn' ? 'অনুগ্রহ করে নতুন কোনো অনুসন্ধান শব্দ বা ফিল্টার ব্যবহার করুন।' : 'Try clearing filters or changing your search query.'}
-              </p>
-              <button className="btn btn-secondary" onClick={() => { setSearchQuery(''); setSelectedGenre('All'); }}>
+              </P>
+              <Button className="btn btn-secondary" onPress={() => { setSearchQuery(''); setSelectedGenre('All'); }}>
                 {lang === 'bn' ? 'ফিল্টার রিসেট করুন' : 'Reset Filters'}
-              </button>
-            </div>
+              </Button>
+            </Div>
           ) : (
-            <div className="book-grid" style={{
+            <Div className="book-grid" style={{
               display: 'grid',
               gridTemplateColumns: 'repeat(auto-fill, minmax(240px, 1fr))',
               gap: '24px'
@@ -212,7 +199,7 @@ export const VisitorView = () => {
                 const isWishlisted = wishlist.includes(book.id);
 
                 return (
-                  <div 
+                  <Div 
                     key={book.id} 
                     className="glass-card"
                     style={{
@@ -224,8 +211,8 @@ export const VisitorView = () => {
                     }}
                   >
                     {/* Wishlist Heart Overlay */}
-                    <button
-                      onClick={(e) => {
+                    <Button
+                      onPress={(e) => {
                         e.stopPropagation();
                         toggleWishlist(book.id);
                       }}
@@ -248,14 +235,14 @@ export const VisitorView = () => {
                       }}
                     >
                       <Heart size={18} fill={isWishlisted ? '#f43f5e' : 'none'} />
-                    </button>
+                    </Button>
 
                     {/* Book Cover */}
-                    <div 
-                      onClick={() => setSelectedBook(book)} 
+                    <Div 
+                      onPress={() => setSelectedBook(book)} 
                       style={{ position: 'relative', cursor: 'pointer', overflow: 'hidden' }}
                     >
-                      <img 
+                      <Img 
                         src={book.cover} 
                         alt={book.title} 
                         style={{
@@ -267,19 +254,19 @@ export const VisitorView = () => {
                         onMouseOver={(e) => e.currentTarget.style.transform = 'scale(1.05)'}
                         onMouseOut={(e) => e.currentTarget.style.transform = 'scale(1)'}
                       />
-                      <span className="badge badge-red" style={{ position: 'absolute', bottom: '12px', left: '12px' }}>
+                      <Span className="badge badge-red" style={{ position: 'absolute', bottom: '12px', left: '12px' }}>
                         স্টল #{book.stallNumber}
-                      </span>
-                    </div>
+                      </Span>
+                    </Div>
 
                     {/* Book Info */}
-                    <div style={{ padding: '16px', display: 'flex', flexDirection: 'column', flex: 1 }}>
-                      <div style={{ fontSize: '0.78rem', color: 'var(--accent-gold)', fontWeight: 600, marginBottom: '4px' }}>
+                    <Div style={{ padding: '16px', display: 'flex', flexDirection: 'column', flex: 1 }}>
+                      <Div style={{ fontSize: '0.78rem', color: 'var(--accent-gold)', fontWeight: 600, marginBottom: '4px' }}>
                         {book.genreBn || book.genre}
-                      </div>
+                      </Div>
 
-                      <h3 
-                        onClick={() => setSelectedBook(book)}
+                      <H3 
+                        onPress={() => setSelectedBook(book)}
                         style={{ 
                           fontSize: '1.1rem', 
                           fontWeight: 700, 
@@ -289,13 +276,13 @@ export const VisitorView = () => {
                         }}
                       >
                         {book.title}
-                      </h3>
+                      </H3>
 
-                      <div style={{ fontSize: '0.88rem', color: 'var(--text-muted)', marginBottom: '12px' }}>
+                      <Div style={{ fontSize: '0.88rem', color: 'var(--text-muted)', marginBottom: '12px' }}>
                         {book.author}
-                      </div>
+                      </Div>
 
-                      <div style={{
+                      <Div style={{
                         marginTop: 'auto',
                         display: 'flex',
                         alignItems: 'center',
@@ -303,31 +290,31 @@ export const VisitorView = () => {
                         paddingTop: '12px',
                         borderTop: '1px solid var(--border-color)'
                       }}>
-                        <div style={{ fontSize: '1.25rem', fontWeight: 800, color: 'var(--primary-red)' }}>
+                        <Div style={{ fontSize: '1.25rem', fontWeight: 800, color: 'var(--primary-red)' }}>
                           ৳{book.price}
-                        </div>
+                        </Div>
 
-                        <button 
+                        <Button 
                           className="btn btn-secondary btn-sm"
-                          onClick={() => setSelectedBook(book)}
+                          onPress={() => setSelectedBook(book)}
                         >
                           <Eye size={14} />
-                          <span>{lang === 'bn' ? 'বিস্তারিত' : 'Details'}</span>
-                        </button>
-                      </div>
-                    </div>
+                          <Span>{lang === 'bn' ? 'বিস্তারিত' : 'Details'}</Span>
+                        </Button>
+                      </Div>
+                    </Div>
 
-                  </div>
+                  </Div>
                 );
               })}
-            </div>
+            </Div>
           )}
-        </div>
+        </Div>
       )}
 
       {/* ----------------- STALLS DIRECTORY TAB ----------------- */}
       {activeTab === 'stalls' && (
-        <div className="stall-grid" style={{
+        <Div className="stall-grid" style={{
           display: 'grid',
           gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))',
           gap: '24px'
@@ -336,12 +323,12 @@ export const VisitorView = () => {
             const bookCount = books.filter(b => b.stallId === stall.id || b.stallName === stall.name).length;
 
             return (
-              <div 
+              <Div 
                 key={stall.id} 
                 className="glass-card" 
                 style={{ borderRadius: 'var(--radius-md)', overflow: 'hidden' }}
               >
-                <div style={{
+                <Div style={{
                   height: '120px',
                   backgroundImage: `linear-gradient(to bottom, transparent, rgba(19, 27, 46, 0.9)), url(${stall.banner})`,
                   backgroundSize: 'cover',
@@ -351,60 +338,60 @@ export const VisitorView = () => {
                   alignItems: 'flex-start',
                   justifyContent: 'space-between'
                 }}>
-                  <span className="badge badge-red" style={{ fontSize: '0.85rem' }}>
+                  <Span className="badge badge-red" style={{ fontSize: '0.85rem' }}>
                     {stall.stallNumber}
-                  </span>
-                  <span className="badge badge-gold">
+                  </Span>
+                  <Span className="badge badge-gold">
                     {stall.category}
-                  </span>
-                </div>
+                  </Span>
+                </Div>
 
-                <div style={{ padding: '16px' }}>
-                  <h3 style={{ fontSize: '1.2rem', fontWeight: 700, marginBottom: '6px' }}>
+                <Div style={{ padding: '16px' }}>
+                  <H3 style={{ fontSize: '1.2rem', fontWeight: 700, marginBottom: '6px' }}>
                     {stall.name}
-                  </h3>
+                  </H3>
 
-                  <div style={{ fontSize: '0.85rem', color: 'var(--text-muted)', marginBottom: '12px', display: 'flex', alignItems: 'center', gap: '6px' }}>
+                  <Div style={{ fontSize: '0.85rem', color: 'var(--text-muted)', marginBottom: '12px', display: 'flex', alignItems: 'center', gap: '6px' }}>
                     <MapPin size={14} color="var(--primary-red)" />
-                    <span>{stall.zone}</span>
-                  </div>
+                    <Span>{stall.zone}</Span>
+                  </Div>
 
-                  <p style={{ fontSize: '0.85rem', color: 'var(--text-muted)', marginBottom: '16px', height: '40px', overflow: 'hidden' }}>
+                  <P style={{ fontSize: '0.85rem', color: 'var(--text-muted)', marginBottom: '16px', height: '40px', overflow: 'hidden' }}>
                     {stall.description}
-                  </p>
+                  </P>
 
-                  <div style={{
+                  <Div style={{
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'space-between',
                     paddingTop: '12px',
                     borderTop: '1px solid var(--border-color)'
                   }}>
-                    <span style={{ fontSize: '0.82rem', color: 'var(--accent-gold)', fontWeight: 600 }}>
+                    <Span style={{ fontSize: '0.82rem', color: 'var(--accent-gold)', fontWeight: 600 }}>
                       বই সংখ্যা: {bookCount}টি
-                    </span>
+                    </Span>
 
-                    <button 
+                    <Button 
                       className="btn btn-primary btn-sm"
-                      onClick={() => setSelectedStall(stall)}
+                      onPress={() => setSelectedStall(stall)}
                     >
                       <Store size={14} />
-                      <span>{lang === 'bn' ? 'স্টলে প্রবেশ' : 'Visit Stall'}</span>
-                    </button>
-                  </div>
-                </div>
+                      <Span>{lang === 'bn' ? 'স্টলে প্রবেশ' : 'Visit Stall'}</Span>
+                    </Button>
+                  </Div>
+                </Div>
 
-              </div>
+              </Div>
             );
           })}
-        </div>
+        </Div>
       )}
 
       {/* ----------------- WISHLIST TAB ----------------- */}
       {activeTab === 'wishlist' && (
-        <div>
+        <Div>
           {wishlistedBooks.length === 0 ? (
-            <div style={{
+            <Div style={{
               textAlign: 'center',
               padding: '60px 20px',
               background: 'var(--bg-card)',
@@ -412,45 +399,45 @@ export const VisitorView = () => {
               border: '1px dashed var(--border-color)'
             }}>
               <Heart size={48} color="#f43f5e" style={{ marginBottom: '16px' }} />
-              <h3 style={{ fontSize: '1.2rem', marginBottom: '8px' }}>
+              <H3 style={{ fontSize: '1.2rem', marginBottom: '8px' }}>
                 {lang === 'bn' ? 'পছন্দের তালিকা খালি' : 'Wishlist is Empty'}
-              </h3>
-              <p style={{ color: 'var(--text-muted)', marginBottom: '20px' }}>
+              </H3>
+              <P style={{ color: 'var(--text-muted)', marginBottom: '20px' }}>
                 {lang === 'bn' ? 'যেকোনো বইয়ের কার্ডে থাকা হার্ট আইকনে ক্লিক করে তালিকায় যুক্ত করুন।' : 'Click the heart icon on any book card to save it here.'}
-              </p>
-              <button className="btn btn-primary" onClick={() => setActiveTab('books')}>
+              </P>
+              <Button className="btn btn-primary" onPress={() => setActiveTab('books')}>
                 {lang === 'bn' ? 'বইসমূহ ব্রাউজ করুন' : 'Browse Books'}
-              </button>
-            </div>
+              </Button>
+            </Div>
           ) : (
-            <div className="wishlist-grid" style={{
+            <Div className="wishlist-grid" style={{
               display: 'grid',
               gridTemplateColumns: 'repeat(auto-fill, minmax(240px, 1fr))',
               gap: '24px'
             }}>
               {wishlistedBooks.map(book => (
-                <div 
+                <Div 
                   key={book.id} 
                   className="glass-card" 
                   style={{ borderRadius: 'var(--radius-md)', padding: '16px' }}
                 >
-                  <img src={book.cover} alt={book.title} style={{ width: '100%', height: '200px', objectFit: 'cover', borderRadius: 'var(--radius-sm)', marginBottom: '12px' }} />
-                  <h4 style={{ fontSize: '1.05rem', fontWeight: 700, marginBottom: '4px' }}>{book.title}</h4>
-                  <div style={{ fontSize: '0.85rem', color: 'var(--text-muted)', marginBottom: '8px' }}>{book.author}</div>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                    <span style={{ fontSize: '1.1rem', fontWeight: 800, color: 'var(--primary-red)' }}>৳{book.price}</span>
-                    <button className="btn btn-secondary btn-sm" onClick={() => toggleWishlist(book.id)}>
+                  <Img src={book.cover} alt={book.title} style={{ width: '100%', height: '200px', objectFit: 'cover', borderRadius: 'var(--radius-sm)', marginBottom: '12px' }} />
+                  <H4 style={{ fontSize: '1.05rem', fontWeight: 700, marginBottom: '4px' }}>{book.title}</H4>
+                  <Div style={{ fontSize: '0.85rem', color: 'var(--text-muted)', marginBottom: '8px' }}>{book.author}</Div>
+                  <Div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                    <Span style={{ fontSize: '1.1rem', fontWeight: 800, color: 'var(--primary-red)' }}>৳{book.price}</Span>
+                    <Button className="btn btn-secondary btn-sm" onPress={() => toggleWishlist(book.id)}>
                       <X size={14} color="#f87171" />
-                      <span>{lang === 'bn' ? 'মুছুন' : 'Remove'}</span>
-                    </button>
-                  </div>
-                </div>
+                      <Span>{lang === 'bn' ? 'মুছুন' : 'Remove'}</Span>
+                    </Button>
+                  </Div>
+                </Div>
               ))}
-            </div>
+            </Div>
           )}
-        </div>
+        </Div>
       )}
 
-    </div>
+    </Div>
   );
 };

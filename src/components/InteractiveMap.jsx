@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useApp } from '../context/AppContext';
-import { X, MapPin, Search, Compass, Info, Check, Store } from 'lucide-react';
+import { Button, Check, Compass, Div, H3, Header, Info, Input, Map, MapPin, Search, Span, Store, X } from '../html';
 
 export const InteractiveMap = ({ onClose }) => {
   const { lang, stalls, setSelectedStall } = useApp();
@@ -15,11 +15,11 @@ export const InteractiveMap = ({ onClose }) => {
   });
 
   return (
-    <div className="modal-overlay" onClick={onClose}>
-      <div className="modal-content" onClick={(e) => e.stopPropagation()} style={{ maxWidth: '950px' }}>
+    <Div className="modal-overlay" onPress={onClose}>
+      <Div className="modal-content" onPress={(e) => e.stopPropagation()} style={{ maxWidth: '950px' }}>
         
         {/* Map Header */}
-        <div style={{
+        <Div style={{
           padding: '20px 24px',
           borderBottom: '1px solid var(--border-color)',
           display: 'flex',
@@ -28,25 +28,25 @@ export const InteractiveMap = ({ onClose }) => {
           flexWrap: 'wrap',
           gap: '12px'
         }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+          <Div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
             <Compass size={24} color="var(--accent-gold)" />
-            <div>
-              <h3 style={{ fontSize: '1.25rem', fontWeight: 700, margin: 0 }}>
+            <Div>
+              <H3 style={{ fontSize: '1.25rem', fontWeight: 700, margin: 0 }}>
                 {lang === 'bn' ? 'অমর একুশে বইমেলা প্রাঙ্গণ ম্যাপ' : 'Fair Ground Interactive Map'}
-              </h3>
-              <span style={{ fontSize: '0.8rem', color: 'var(--text-muted)' }}>
+              </H3>
+              <Span style={{ fontSize: '0.8rem', color: 'var(--text-muted)' }}>
                 {lang === 'bn' ? 'সোহরাওয়ার্দী উদ্যান ও বাংলা একাডেমি প্রাঙ্গণ' : 'Suhrawardy Udyan & Bangla Academy'}
-              </span>
-            </div>
-          </div>
+              </Span>
+            </Div>
+          </Div>
 
-          <button className="btn btn-secondary btn-icon" onClick={onClose}>
+          <Button className="btn btn-secondary btn-icon" onPress={onClose}>
             <X size={20} />
-          </button>
-        </div>
+          </Button>
+        </Div>
 
         {/* Map Filters Bar */}
-        <div style={{
+        <Div style={{
           padding: '16px 24px',
           background: 'var(--bg-card)',
           borderBottom: '1px solid var(--border-color)',
@@ -55,13 +55,13 @@ export const InteractiveMap = ({ onClose }) => {
           flexWrap: 'wrap',
           alignItems: 'center'
         }}>
-          <div style={{ flex: 1, minWidth: '200px', position: 'relative' }}>
+          <Div style={{ flex: 1, minWidth: '200px', position: 'relative' }}>
             <Search size={16} color="var(--text-muted)" style={{ position: 'absolute', left: '12px', top: '50%', transform: 'translateY(-50%)' }} />
-            <input 
+            <Input 
               type="text" 
               placeholder={lang === 'bn' ? 'স্টল নম্বর বা নাম লিখে ম্যাপে খুঁজুন...' : 'Search stall # on map...'}
               value={mapSearch}
-              onChange={(e) => setMapSearch(e.target.value)}
+              onChangeText={setMapSearch}
               style={{
                 width: '100%',
                 padding: '8px 12px 8px 36px',
@@ -72,25 +72,25 @@ export const InteractiveMap = ({ onClose }) => {
                 fontSize: '0.88rem'
               }}
             />
-          </div>
+          </Div>
 
-          <div style={{ display: 'flex', gap: '6px' }}>
+          <Div style={{ display: 'flex', gap: '6px' }}>
             {['All', 'Suhrawardy', 'Bangla Academy'].map(zone => (
-              <button
+              <Button
                 key={zone}
                 className={`btn btn-sm ${selectedZone === zone ? 'btn-gold' : 'btn-secondary'}`}
-                onClick={() => setSelectedZone(zone)}
+                onPress={() => setSelectedZone(zone)}
               >
                 {zone === 'All' ? (lang === 'bn' ? 'সব এলাকা' : 'All Grounds') : zone}
-              </button>
+              </Button>
             ))}
-          </div>
-        </div>
+          </Div>
+        </Div>
 
         {/* Visual Map Canvas Representation */}
-        <div style={{ padding: '24px' }}>
+        <Div style={{ padding: '24px' }}>
           
-          <div style={{
+          <Div style={{
             position: 'relative',
             minHeight: '360px',
             background: 'radial-gradient(ellipse at center, rgba(19, 27, 46, 0.9), rgba(11, 15, 25, 0.98))',
@@ -101,20 +101,20 @@ export const InteractiveMap = ({ onClose }) => {
           }}>
             
             {/* Zones Grid */}
-            <div style={{
+            <Div style={{
               display: 'grid',
               gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
               gap: '20px'
             }}>
               
               {/* Suhrawardy Udyan Zone */}
-              <div style={{
+              <Div style={{
                 padding: '16px',
                 background: 'rgba(217, 38, 56, 0.08)',
                 border: '1px solid rgba(217, 38, 56, 0.25)',
                 borderRadius: 'var(--radius-md)'
               }}>
-                <div style={{
+                <Div style={{
                   fontSize: '0.9rem',
                   fontWeight: 700,
                   color: 'var(--primary-red)',
@@ -124,14 +124,14 @@ export const InteractiveMap = ({ onClose }) => {
                   gap: '6px'
                 }}>
                   <MapPin size={16} />
-                  <span>সোহরাওয়ার্দী উদ্যান (Suhrawardy Udyan Zone)</span>
-                </div>
+                  <Span>সোহরাওয়ার্দী উদ্যান (Suhrawardy Udyan Zone)</Span>
+                </Div>
 
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+                <Div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
                   {filteredStalls.filter(s => s.zone.includes('Suhrawardy')).map(stall => (
-                    <div 
+                    <Div 
                       key={stall.id}
-                      onClick={() => {
+                      onPress={() => {
                         setSelectedStall(stall);
                         onClose();
                       }}
@@ -148,24 +148,24 @@ export const InteractiveMap = ({ onClose }) => {
                       }}
                       className="glass-card"
                     >
-                      <div>
-                        <div style={{ fontWeight: 700, fontSize: '0.9rem' }}>{stall.name}</div>
-                        <div style={{ fontSize: '0.78rem', color: 'var(--text-muted)' }}>{stall.pavilion}</div>
-                      </div>
-                      <span className="badge badge-red">{stall.stallNumber}</span>
-                    </div>
+                      <Div>
+                        <Div style={{ fontWeight: 700, fontSize: '0.9rem' }}>{stall.name}</Div>
+                        <Div style={{ fontSize: '0.78rem', color: 'var(--text-muted)' }}>{stall.pavilion}</Div>
+                      </Div>
+                      <Span className="badge badge-red">{stall.stallNumber}</Span>
+                    </Div>
                   ))}
-                </div>
-              </div>
+                </Div>
+              </Div>
 
               {/* Bangla Academy Zone */}
-              <div style={{
+              <Div style={{
                 padding: '16px',
                 background: 'rgba(13, 148, 136, 0.08)',
                 border: '1px solid rgba(13, 148, 136, 0.25)',
                 borderRadius: 'var(--radius-md)'
               }}>
-                <div style={{
+                <Div style={{
                   fontSize: '0.9rem',
                   fontWeight: 700,
                   color: 'var(--accent-teal-light)',
@@ -175,14 +175,14 @@ export const InteractiveMap = ({ onClose }) => {
                   gap: '6px'
                 }}>
                   <MapPin size={16} />
-                  <span>বাংলা একাডেমি প্রাঙ্গণ (Bangla Academy Yard)</span>
-                </div>
+                  <Span>বাংলা একাডেমি প্রাঙ্গণ (Bangla Academy Yard)</Span>
+                </Div>
 
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+                <Div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
                   {filteredStalls.filter(s => s.zone.includes('Bangla Academy')).map(stall => (
-                    <div 
+                    <Div 
                       key={stall.id}
-                      onClick={() => {
+                      onPress={() => {
                         setSelectedStall(stall);
                         onClose();
                       }}
@@ -199,20 +199,20 @@ export const InteractiveMap = ({ onClose }) => {
                       }}
                       className="glass-card"
                     >
-                      <div>
-                        <div style={{ fontWeight: 700, fontSize: '0.9rem' }}>{stall.name}</div>
-                        <div style={{ fontSize: '0.78rem', color: 'var(--text-muted)' }}>{stall.pavilion}</div>
-                      </div>
-                      <span className="badge badge-teal">{stall.stallNumber}</span>
-                    </div>
+                      <Div>
+                        <Div style={{ fontWeight: 700, fontSize: '0.9rem' }}>{stall.name}</Div>
+                        <Div style={{ fontSize: '0.78rem', color: 'var(--text-muted)' }}>{stall.pavilion}</Div>
+                      </Div>
+                      <Span className="badge badge-teal">{stall.stallNumber}</Span>
+                    </Div>
                   ))}
-                </div>
-              </div>
+                </Div>
+              </Div>
 
-            </div>
+            </Div>
 
             {/* Fair Infrastructure Markers */}
-            <div style={{
+            <Div style={{
               marginTop: '20px',
               padding: '12px',
               background: 'rgba(245, 158, 11, 0.08)',
@@ -225,17 +225,17 @@ export const InteractiveMap = ({ onClose }) => {
               fontSize: '0.82rem',
               color: 'var(--text-muted)'
             }}>
-              <span>🚩 মূল প্রবেশদ্বার (Gate 1 & 2)</span>
-              <span>🎙️ নজরুল মঞ্চ ও উন্মুক্ত প্রাঙ্গণ</span>
-              <span>☕ ফুড কোর্ট ও তথ্য কেন্দ্র</span>
-              <span>🚑 প্রাথমিক চিকিৎসা ও নিরাপত্তা বুথ</span>
-            </div>
+              <Span>🚩 মূল প্রবেশদ্বার (Gate 1 & 2)</Span>
+              <Span>🎙️ নজরুল মঞ্চ ও উন্মুক্ত প্রাঙ্গণ</Span>
+              <Span>☕ ফুড কোর্ট ও তথ্য কেন্দ্র</Span>
+              <Span>🚑 প্রাথমিক চিকিৎসা ও নিরাপত্তা বুথ</Span>
+            </Div>
 
-          </div>
+          </Div>
 
-        </div>
+        </Div>
 
-      </div>
-    </div>
+      </Div>
+    </Div>
   );
 };

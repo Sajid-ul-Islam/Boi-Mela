@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useApp } from './context/AppContext';
+import { Div, MainEl } from './html';
 import { Header } from './components/Header';
 import { SplashScreen } from './components/SplashScreen';
 import { VisitorView } from './components/VisitorView';
@@ -25,13 +26,13 @@ export function AppContent() {
   const [showHeroBanner, setShowHeroBanner] = useState(true);
 
   return (
-    <div className={`app-container ${darkMode ? '' : 'light-theme'}`}>
+    <Div className={`app-container ${darkMode ? '' : 'light-theme'}`}>
       
       {/* Header Bar */}
       <Header />
 
       {/* Main Container */}
-      <main className="main-content">
+      <MainEl className="main-content">
         
         {/* Hero Splash Banner */}
         {showHeroBanner && (
@@ -56,7 +57,7 @@ export function AppContent() {
           <VisitorView />
         )}
 
-      </main>
+      </MainEl>
 
       {/* Footer */}
       <Footer />
@@ -91,7 +92,7 @@ export function AppContent() {
       {/* Global Toast Container */}
       <Toast />
 
-    </div>
+    </Div>
   );
 }
 

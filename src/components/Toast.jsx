@@ -1,6 +1,6 @@
 import React from 'react';
 import { useApp } from '../context/AppContext';
-import { CheckCircle2, AlertCircle, Info, X } from 'lucide-react';
+import { AlertCircle, CheckCircle2, Div, Info, Span, X } from '../html';
 
 export const Toast = () => {
   const { toasts } = useApp();
@@ -8,7 +8,7 @@ export const Toast = () => {
   if (!toasts.length) return null;
 
   return (
-    <div style={{
+    <Div style={{
       position: 'fixed',
       bottom: '24px',
       right: '24px',
@@ -36,7 +36,7 @@ export const Toast = () => {
         }
 
         return (
-          <div
+          <Div
             key={toast.id}
             className="animate-fade-in"
             style={{
@@ -56,10 +56,10 @@ export const Toast = () => {
             }}
           >
             <Icon size={20} color={iconColor} style={{ flexShrink: 0 }} />
-            <span style={{ fontSize: '0.9rem', fontWeight: 500, flex: 1 }}>{toast.message}</span>
-          </div>
+            <Span style={{ fontSize: '0.9rem', fontWeight: 500, flex: 1 }}>{toast.message}</Span>
+          </Div>
         );
       })}
-    </div>
+    </Div>
   );
 };

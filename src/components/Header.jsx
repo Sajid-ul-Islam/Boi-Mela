@@ -1,19 +1,6 @@
 import React from 'react';
 import { useApp } from '../context/AppContext';
-import { 
-  BookOpen, 
-  Search, 
-  Map, 
-  Bell, 
-  Heart, 
-  UserCheck, 
-  Store, 
-  Globe, 
-  Moon, 
-  Sun,
-  Sparkles,
-  Users
-} from 'lucide-react';
+import { Bell, BookOpen, Button, Div, Globe, H1, HeaderEl, Heart, Input, Map, Moon, Search, Span, Sparkles, Store, Sun, UserCheck, Users } from '../html';
 
 export const Header = () => {
   const { 
@@ -41,7 +28,7 @@ export const Header = () => {
   };
 
   return (
-    <header style={{
+    <HeaderEl style={{
       background: 'rgba(19, 27, 46, 0.85)',
       backdropFilter: 'blur(16px)',
       borderBottom: '1px solid var(--border-color)',
@@ -49,7 +36,7 @@ export const Header = () => {
       top: 0,
       zIndex: 900
     }}>
-      <div className="header-inner" style={{
+      <Div className="header-inner" style={{
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'space-between',
@@ -57,11 +44,11 @@ export const Header = () => {
         flexWrap: 'wrap'
       }}>
         {/* Logo */}
-        <div 
-          onClick={() => setCurrentView('home')} 
+        <Div 
+          onPress={() => setCurrentView('home')} 
           style={{ display: 'flex', alignItems: 'center', gap: '12px', cursor: 'pointer' }}
         >
-          <div style={{
+          <Div style={{
             width: '42px',
             height: '42px',
             borderRadius: 'var(--radius-md)',
@@ -72,30 +59,30 @@ export const Header = () => {
             boxShadow: '0 0 15px rgba(217, 38, 56, 0.4)'
           }}>
             <BookOpen size={24} color="#ffffff" />
-          </div>
-          <div>
-            <h1 style={{ fontSize: '1.25rem', fontWeight: 700, margin: 0, lineHeight: 1.1 }}>
+          </Div>
+          <Div>
+            <H1 style={{ fontSize: '1.25rem', fontWeight: 700, margin: 0, lineHeight: 1.1 }}>
               {lang === 'bn' ? 'অমর একুশে বইমেলা' : 'Amar Ekushey Boi Mela'}
-            </h1>
-            <span style={{ fontSize: '0.75rem', color: 'var(--accent-gold)', fontWeight: 600 }}>
+            </H1>
+            <Span style={{ fontSize: '0.75rem', color: 'var(--accent-gold)', fontWeight: 600 }}>
               {lang === 'bn' ? 'ডিজিটাল স্টল ডিরেক্টরি ও সার্চ' : 'Digital Directory & Observer Hub'}
-            </span>
-          </div>
-        </div>
+            </Span>
+          </Div>
+        </Div>
 
         {/* Global Search input */}
-        <div style={{
+        <Div style={{
           flex: 1,
           maxWidth: '420px',
           minWidth: '240px',
           position: 'relative'
         }}>
           <Search size={18} color="var(--text-muted)" style={{ position: 'absolute', left: '14px', top: '50%', transform: 'translateY(-50%)' }} />
-          <input
+          <Input
             type="text"
             placeholder={lang === 'bn' ? 'বই, লেখক বা স্টলের নাম দিয়ে খুঁজুন...' : 'Search books, authors, stall #...'}
             value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
+            onChangeText={setSearchQuery}
             style={{
               width: '100%',
               padding: '10px 16px 10px 40px',
@@ -108,33 +95,33 @@ export const Header = () => {
               transition: 'all var(--transition-fast)'
             }}
           />
-        </div>
+        </Div>
 
         {/* Header Actions */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+        <Div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
           
           {/* Map Button */}
-          <button 
+          <Button 
             className="btn btn-secondary btn-sm"
-            onClick={() => setIsMapOpen(true)}
+            onPress={() => setIsMapOpen(true)}
             title={lang === 'bn' ? 'বইমেলার ম্যাপ দেখুন' : 'View Fair Map'}
           >
             <Map size={16} color="var(--accent-gold)" />
-            <span className="map-btn-label">
+            <Span className="map-btn-label">
               {lang === 'bn' ? 'ম্যাপ' : 'Map'}
-            </span>
-          </button>
+            </Span>
+          </Button>
 
           {/* Notifications Drawer */}
-          <button 
+          <Button 
             className="btn btn-secondary btn-icon"
-            onClick={() => setIsNotificationDrawerOpen(true)}
+            onPress={() => setIsNotificationDrawerOpen(true)}
             style={{ position: 'relative' }}
             title={lang === 'bn' ? 'নোটিফিকেশন ও ঘোষণা' : 'Notifications'}
           >
             <Bell size={18} />
             {announcements.length > 0 && (
-              <span style={{
+              <Span style={{
                 position: 'absolute',
                 top: '4px',
                 right: '4px',
@@ -150,20 +137,20 @@ export const Header = () => {
                 justifyContent: 'center'
               }}>
                 {announcements.length}
-              </span>
+              </Span>
             )}
-          </button>
+          </Button>
 
           {/* Wishlist */}
-          <button 
+          <Button 
             className="btn btn-secondary btn-icon"
-            onClick={() => setIsWishlistOpen(true)}
+            onPress={() => setIsWishlistOpen(true)}
             style={{ position: 'relative' }}
             title={lang === 'bn' ? 'পছন্দের তালিকা' : 'Wishlist'}
           >
             <Heart size={18} color={wishlist.length > 0 ? '#f43f5e' : 'currentColor'} fill={wishlist.length > 0 ? '#f43f5e' : 'none'} />
             {wishlist.length > 0 && (
-              <span style={{
+              <Span style={{
                 position: 'absolute',
                 top: '4px',
                 right: '4px',
@@ -179,49 +166,49 @@ export const Header = () => {
                 justifyContent: 'center'
               }}>
                 {wishlist.length}
-              </span>
+              </Span>
             )}
-          </button>
+          </Button>
 
           {/* Role Switcher */}
-          <button 
+          <Button 
             className={`btn ${userRole === 'staff' ? 'btn-gold' : 'btn-primary'}`}
-            onClick={handleRoleToggle}
+            onPress={handleRoleToggle}
             style={{ fontWeight: 600 }}
           >
             {userRole === 'staff' ? (
               <>
                 <Store size={16} />
-                <span>{staffUser ? staffUser.stallName : (lang === 'bn' ? 'স্টাফ পোর্টাল' : 'Staff Portal')}</span>
+                <Span>{staffUser ? staffUser.stallName : (lang === 'bn' ? 'স্টাফ পোর্টাল' : 'Staff Portal')}</Span>
               </>
             ) : (
               <>
                 <UserCheck size={16} />
-                <span>{lang === 'bn' ? 'প্রকাশক লগইন' : 'Publisher Area'}</span>
+                <Span>{lang === 'bn' ? 'প্রকাশক লগইন' : 'Publisher Area'}</Span>
               </>
             )}
-          </button>
+          </Button>
 
           {/* Language Toggle */}
-          <button 
+          <Button 
             className="btn btn-secondary btn-sm"
-            onClick={() => setLang(lang === 'bn' ? 'en' : 'bn')}
+            onPress={() => setLang(lang === 'bn' ? 'en' : 'bn')}
             style={{ minWidth: '45px' }}
           >
             <Globe size={14} />
-            <span>{lang === 'bn' ? 'EN' : 'বাং'}</span>
-          </button>
+            <Span>{lang === 'bn' ? 'EN' : 'বাং'}</Span>
+          </Button>
 
           {/* Theme Toggle */}
-          <button 
+          <Button 
             className="btn btn-secondary btn-icon"
-            onClick={() => setDarkMode(!darkMode)}
+            onPress={() => setDarkMode(!darkMode)}
           >
             {darkMode ? <Sun size={18} color="var(--accent-gold)" /> : <Moon size={18} />}
-          </button>
+          </Button>
 
-        </div>
-      </div>
-    </header>
+        </Div>
+      </Div>
+    </HeaderEl>
   );
 };

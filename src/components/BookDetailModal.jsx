@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useApp } from '../context/AppContext';
-import { X, Heart, BellRing, MapPin, Store, Tag, Star, Share2, Check, UserPlus } from 'lucide-react';
+import { BellRing, Button, Check, Div, H2, Header, Heart, Img, Info, Input, Label, Map, MapPin, Share2, Span, Star, Store, Tag, UserPlus, X } from '../html';
 
 export const BookDetailModal = ({ book, onClose }) => {
   const { 
@@ -43,32 +43,32 @@ export const BookDetailModal = ({ book, onClose }) => {
   };
 
   return (
-    <div className="modal-overlay" onClick={onClose}>
-      <div className="modal-content" onClick={(e) => e.stopPropagation()} style={{ maxWidth: '750px' }}>
+    <Div className="modal-overlay" onPress={onClose}>
+      <Div className="modal-content" onPress={(e) => e.stopPropagation()} style={{ maxWidth: '750px' }}>
         
         {/* Header */}
-        <div style={{
+        <Div style={{
           padding: '20px 24px',
           borderBottom: '1px solid var(--border-color)',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'space-between'
         }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-            <span className="badge badge-gold">{book.genreBn || book.genre}</span>
-            <span style={{ fontSize: '0.85rem', color: 'var(--text-muted)' }}>কোড: {book.code || 'BOI-100'}</span>
-          </div>
-          <button className="btn btn-secondary btn-icon" onClick={onClose}>
+          <Div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+            <Span className="badge badge-gold">{book.genreBn || book.genre}</Span>
+            <Span style={{ fontSize: '0.85rem', color: 'var(--text-muted)' }}>কোড: {book.code || 'BOI-100'}</Span>
+          </Div>
+          <Button className="btn btn-secondary btn-icon" onPress={onClose}>
             <X size={20} />
-          </button>
-        </div>
+          </Button>
+        </Div>
 
         {/* Modal Body */}
-        <div style={{ padding: '24px', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '24px' }}>
+        <Div style={{ padding: '24px', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '24px' }}>
           
           {/* Left: Book Cover Image & Quick Actions */}
-          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-            <img 
+          <Div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+            <Img 
               src={book.cover} 
               alt={book.title}
               style={{
@@ -82,34 +82,34 @@ export const BookDetailModal = ({ book, onClose }) => {
               }} 
             />
 
-            <div style={{ display: 'flex', gap: '10px', width: '100%' }}>
-              <button 
+            <Div style={{ display: 'flex', gap: '10px', width: '100%' }}>
+              <Button 
                 className={`btn ${isWishlisted ? 'btn-primary' : 'btn-secondary'}`}
                 style={{ flex: 1 }}
-                onClick={() => toggleWishlist(book.id)}
+                onPress={() => toggleWishlist(book.id)}
               >
                 <Heart size={18} fill={isWishlisted ? '#ffffff' : 'none'} />
-                <span>{isWishlisted ? (lang === 'bn' ? 'পছন্দ তালিকায় আছে' : 'Wishlisted') : (lang === 'bn' ? 'পছন্দ তালিকায় যোগ করুন' : 'Add to Wishlist')}</span>
-              </button>
+                <Span>{isWishlisted ? (lang === 'bn' ? 'পছন্দ তালিকায় আছে' : 'Wishlisted') : (lang === 'bn' ? 'পছন্দ তালিকায় যোগ করুন' : 'Add to Wishlist')}</Span>
+              </Button>
 
-              <button className="btn btn-secondary btn-icon" onClick={handleShare} title="Share Link">
+              <Button className="btn btn-secondary btn-icon" onPress={handleShare} title="Share Link">
                 {copied ? <Check size={18} color="#10b981" /> : <Share2 size={18} />}
-              </button>
-            </div>
-          </div>
+              </Button>
+            </Div>
+          </Div>
 
           {/* Right: Book Details & Stall Info */}
-          <div>
-            <h2 style={{ fontSize: '1.8rem', fontWeight: 800, marginBottom: '8px', lineHeight: 1.2 }}>
+          <Div>
+            <H2 style={{ fontSize: '1.8rem', fontWeight: 800, marginBottom: '8px', lineHeight: 1.2 }}>
               {book.title}
-            </h2>
+            </H2>
 
-            <div style={{ fontSize: '1.1rem', color: 'var(--accent-gold)', fontWeight: 600, marginBottom: '16px' }}>
+            <Div style={{ fontSize: '1.1rem', color: 'var(--accent-gold)', fontWeight: 600, marginBottom: '16px' }}>
               লেখক: {book.author}
-            </div>
+            </Div>
 
             {/* Price Tag */}
-            <div style={{
+            <Div style={{
               display: 'inline-flex',
               alignItems: 'baseline',
               gap: '8px',
@@ -119,54 +119,54 @@ export const BookDetailModal = ({ book, onClose }) => {
               border: '1px solid rgba(217, 38, 56, 0.3)',
               marginBottom: '20px'
             }}>
-              <span style={{ fontSize: '1.4rem', fontWeight: 800, color: 'var(--primary-red)' }}>৳{book.price}</span>
-              <span style={{ fontSize: '0.85rem', color: 'var(--text-muted)' }}>{book.inStock ? '(মজুদ আছে)' : '(মজুদ শেষ)'}</span>
-            </div>
+              <Span style={{ fontSize: '1.4rem', fontWeight: 800, color: 'var(--primary-red)' }}>৳{book.price}</Span>
+              <Span style={{ fontSize: '0.85rem', color: 'var(--text-muted)' }}>{book.inStock ? '(মজুদ আছে)' : '(মজুদ শেষ)'}</Span>
+            </Div>
 
-            <p style={{ color: 'var(--text-muted)', fontSize: '0.95rem', marginBottom: '24px', lineHeight: 1.6 }}>
+            <P style={{ color: 'var(--text-muted)', fontSize: '0.95rem', marginBottom: '24px', lineHeight: 1.6 }}>
               {book.description || 'অমর একুশে বইমেলা ২০২৬ এর বিশেষ আকর্ষণ। বইটি মেলা প্রাঙ্গণে নির্ধারিত স্টলে ছাড়মূল্যে পাওয়া যাচ্ছে।'}
-            </p>
+            </P>
 
             {/* Stall Info Box */}
-            <div style={{
+            <Div style={{
               padding: '16px',
               background: 'var(--bg-card)',
               borderRadius: 'var(--radius-md)',
               border: '1px solid var(--border-color)',
               marginBottom: '20px'
             }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '6px' }}>
+              <Div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '6px' }}>
                 <Store size={18} color="var(--accent-gold)" />
-                <span style={{ fontWeight: 700, fontSize: '1rem' }}>{book.stallName}</span>
-              </div>
+                <Span style={{ fontWeight: 700, fontSize: '1rem' }}>{book.stallName}</Span>
+              </Div>
 
-              <div style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '0.9rem', color: 'var(--text-muted)', marginBottom: '12px' }}>
+              <Div style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '0.9rem', color: 'var(--text-muted)', marginBottom: '12px' }}>
                 <MapPin size={16} />
-                <span>স্টল নম্বর: <strong style={{ color: '#fff' }}>{book.stallNumber}</strong></span>
-              </div>
+                <Span>স্টল নম্বর: <strong style={{ color: '#fff' }}>{book.stallNumber}</strong></Span>
+              </Div>
 
-              <div style={{ display: 'flex', gap: '10px' }}>
-                <button 
+              <Div style={{ display: 'flex', gap: '10px' }}>
+                <Button 
                   className="btn btn-secondary btn-sm"
-                  onClick={() => {
+                  onPress={() => {
                     if (matchedStall) setSelectedStall(matchedStall);
                     setIsMapOpen(true);
                     onClose();
                   }}
                 >
                   <MapPin size={14} color="var(--accent-gold)" />
-                  <span>{lang === 'bn' ? 'ম্যাপে স্টল দেখুন' : 'Locate on Map'}</span>
-                </button>
+                  <Span>{lang === 'bn' ? 'ম্যাপে স্টল দেখুন' : 'Locate on Map'}</Span>
+                </Button>
 
-                <button 
+                <Button 
                   className="btn btn-teal btn-sm"
-                  onClick={() => setShowObsForm(!showObsForm)}
+                  onPress={() => setShowObsForm(!showObsForm)}
                 >
                   <BellRing size={14} />
-                  <span>{lang === 'bn' ? 'স্টল সাবস্ক্রাইব করুন' : 'Subscribe to Stall'}</span>
-                </button>
-              </div>
-            </div>
+                  <Span>{lang === 'bn' ? 'স্টল সাবস্ক্রাইব করুন' : 'Subscribe to Stall'}</Span>
+                </Button>
+              </Div>
+            </Div>
 
             {/* Observer Subscription Input */}
             {showObsForm && (
@@ -176,16 +176,16 @@ export const BookDetailModal = ({ book, onClose }) => {
                 borderRadius: 'var(--radius-md)',
                 border: '1px dashed var(--accent-teal-light)'
               }}>
-                <label style={{ fontSize: '0.85rem', display: 'block', marginBottom: '8px', fontWeight: 600 }}>
+                <Label style={{ fontSize: '0.85rem', display: 'block', marginBottom: '8px', fontWeight: 600 }}>
                   {lang === 'bn' ? 'ইমেইল দিন (নতুন বই প্রকাশের নোটিফিকেশন পেতে):' : 'Enter Email for New Book Alerts:'}
-                </label>
-                <div style={{ display: 'flex', gap: '8px' }}>
-                  <input 
+                </Label>
+                <Div style={{ display: 'flex', gap: '8px' }}>
+                  <Input 
                     type="email"
                     required
                     placeholder="example@gmail.com"
                     value={obsEmail}
-                    onChange={(e) => setObsEmail(e.target.value)}
+                    onChangeText={setObsEmail}
                     style={{
                       flex: 1,
                       padding: '8px 12px',
@@ -196,19 +196,19 @@ export const BookDetailModal = ({ book, onClose }) => {
                       fontSize: '0.9rem'
                     }}
                   />
-                  <button type="submit" className="btn btn-teal btn-sm">
+                  <Button type="submit" className="btn btn-teal btn-sm">
                     <UserPlus size={14} />
-                    <span>যুক্ত করুন</span>
-                  </button>
-                </div>
+                    <Span>যুক্ত করুন</Span>
+                  </Button>
+                </Div>
               </form>
             )}
 
-          </div>
+          </Div>
 
-        </div>
+        </Div>
 
-      </div>
-    </div>
+      </Div>
+    </Div>
   );
 };

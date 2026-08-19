@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useApp } from '../context/AppContext';
-import { X, Store, MapPin, Mail, Phone, Users, BookOpen, BellRing, Plus, Sparkles } from 'lucide-react';
+import { BellRing, BookOpen, Button, Div, H2, H3, Header, Img, Input, Mail, MapPin, Phone, Plus, Span, Sparkles, Store, Users, X } from '../html';
 
 export const StallDetailModal = ({ stall, onClose }) => {
   const { 
@@ -28,11 +28,11 @@ export const StallDetailModal = ({ stall, onClose }) => {
   };
 
   return (
-    <div className="modal-overlay" onClick={onClose}>
-      <div className="modal-content" onClick={(e) => e.stopPropagation()} style={{ maxWidth: '850px' }}>
+    <Div className="modal-overlay" onPress={onClose}>
+      <Div className="modal-content" onPress={(e) => e.stopPropagation()} style={{ maxWidth: '850px' }}>
         
         {/* Stall Header Banner */}
-        <div style={{
+        <Div style={{
           position: 'relative',
           height: '180px',
           backgroundImage: `linear-gradient(to bottom, rgba(19, 27, 46, 0.4), rgba(19, 27, 46, 0.95)), url(${stall.banner})`,
@@ -44,37 +44,37 @@ export const StallDetailModal = ({ stall, onClose }) => {
           justifyContent: 'flex-end',
           borderRadius: 'var(--radius-lg) var(--radius-lg) 0 0'
         }}>
-          <button 
+          <Button 
             className="btn btn-secondary btn-icon" 
-            onClick={onClose}
+            onPress={onClose}
             style={{ position: 'absolute', top: '16px', right: '16px', background: 'rgba(0,0,0,0.6)' }}
           >
             <X size={20} />
-          </button>
+          </Button>
 
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', flexWrap: 'wrap', gap: '12px' }}>
-            <div>
-              <span className="badge badge-gold" style={{ marginBottom: '6px' }}>{stall.category || 'প্রকাশনী'}</span>
-              <h2 style={{ fontSize: '2rem', fontWeight: 800, margin: 0, textShadow: '0 2px 10px rgba(0,0,0,0.8)' }}>
+          <Div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', flexWrap: 'wrap', gap: '12px' }}>
+            <Div>
+              <Span className="badge badge-gold" style={{ marginBottom: '6px' }}>{stall.category || 'প্রকাশনী'}</Span>
+              <H2 style={{ fontSize: '2rem', fontWeight: 800, margin: 0, textShadow: '0 2px 10px rgba(0,0,0,0.8)' }}>
                 {stall.name}
-              </h2>
-            </div>
-            <div style={{ display: 'flex', gap: '10px' }}>
-              <span className="badge badge-red" style={{ padding: '6px 12px', fontSize: '0.9rem' }}>
+              </H2>
+            </Div>
+            <Div style={{ display: 'flex', gap: '10px' }}>
+              <Span className="badge badge-red" style={{ padding: '6px 12px', fontSize: '0.9rem' }}>
                 <MapPin size={14} /> {stall.stallNumber}
-              </span>
-              <span className="badge badge-teal" style={{ padding: '6px 12px', fontSize: '0.9rem' }}>
+              </Span>
+              <Span className="badge badge-teal" style={{ padding: '6px 12px', fontSize: '0.9rem' }}>
                 <Users size={14} /> {stallObservers.length} Observer(s)
-              </span>
-            </div>
-          </div>
-        </div>
+              </Span>
+            </Div>
+          </Div>
+        </Div>
 
         {/* Modal Body */}
-        <div style={{ padding: '24px' }}>
+        <Div style={{ padding: '24px' }}>
           
           {/* Information Strip */}
-          <div style={{
+          <Div style={{
             display: 'grid',
             gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
             gap: '16px',
@@ -84,23 +84,23 @@ export const StallDetailModal = ({ stall, onClose }) => {
             borderRadius: 'var(--radius-md)',
             border: '1px solid var(--border-color)'
           }}>
-            <div>
-              <div style={{ fontSize: '0.8rem', color: 'var(--text-muted)' }}>অবস্থান (Zone)</div>
-              <div style={{ fontWeight: 600, fontSize: '0.95rem' }}>{stall.zone}</div>
-            </div>
-            <div>
-              <div style={{ fontSize: '0.8rem', color: 'var(--text-muted)' }}>প্যাভিলিয়ন</div>
-              <div style={{ fontWeight: 600, fontSize: '0.95rem' }}>{stall.pavilion}</div>
-            </div>
-            <div>
-              <div style={{ fontSize: '0.8rem', color: 'var(--text-muted)' }}>যোগাযোগ ইমেইল</div>
-              <div style={{ fontWeight: 600, fontSize: '0.95rem' }}>{stall.email}</div>
-            </div>
-          </div>
+            <Div>
+              <Div style={{ fontSize: '0.8rem', color: 'var(--text-muted)' }}>অবস্থান (Zone)</Div>
+              <Div style={{ fontWeight: 600, fontSize: '0.95rem' }}>{stall.zone}</Div>
+            </Div>
+            <Div>
+              <Div style={{ fontSize: '0.8rem', color: 'var(--text-muted)' }}>প্যাভিলিয়ন</Div>
+              <Div style={{ fontWeight: 600, fontSize: '0.95rem' }}>{stall.pavilion}</Div>
+            </Div>
+            <Div>
+              <Div style={{ fontSize: '0.8rem', color: 'var(--text-muted)' }}>যোগাযোগ ইমেইল</Div>
+              <Div style={{ fontWeight: 600, fontSize: '0.95rem' }}>{stall.email}</Div>
+            </Div>
+          </Div>
 
-          <p style={{ color: 'var(--text-muted)', fontSize: '0.95rem', marginBottom: '24px', lineHeight: 1.6 }}>
+          <P style={{ color: 'var(--text-muted)', fontSize: '0.95rem', marginBottom: '24px', lineHeight: 1.6 }}>
             {stall.description}
-          </p>
+          </P>
 
           {/* Quick Subscribe Bar */}
           <form onSubmit={handleSub} style={{
@@ -115,20 +115,20 @@ export const StallDetailModal = ({ stall, onClose }) => {
             flexWrap: 'wrap'
           }}>
             <BellRing size={20} color="var(--accent-teal-light)" />
-            <div style={{ flex: 1, minWidth: '180px' }}>
-              <div style={{ fontWeight: 700, fontSize: '0.9rem' }}>
+            <Div style={{ flex: 1, minWidth: '180px' }}>
+              <Div style={{ fontWeight: 700, fontSize: '0.9rem' }}>
                 {lang === 'bn' ? 'এই স্টলের আপডেট পান (Observer List)' : 'Subscribe to Stall Notifications'}
-              </div>
-              <div style={{ fontSize: '0.78rem', color: 'var(--text-muted)' }}>
+              </Div>
+              <Div style={{ fontSize: '0.78rem', color: 'var(--text-muted)' }}>
                 {lang === 'bn' ? 'নতুন বই প্রকাশ ও ছাড়ে নোটিফিকেশন দেওয়া হবে।' : 'Get alerted when new books are listed by this publisher.'}
-              </div>
-            </div>
-            <input 
+              </Div>
+            </Div>
+            <Input 
               type="email" 
               required
               placeholder="your@email.com"
               value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              onChangeText={setEmail}
               style={{
                 padding: '8px 14px',
                 borderRadius: 'var(--radius-sm)',
@@ -138,28 +138,28 @@ export const StallDetailModal = ({ stall, onClose }) => {
                 fontSize: '0.9rem'
               }}
             />
-            <button type="submit" className="btn btn-teal btn-sm">
+            <Button type="submit" className="btn btn-teal btn-sm">
               <Plus size={16} />
-              <span>{lang === 'bn' ? 'ফলো করুন' : 'Subscribe'}</span>
-            </button>
+              <Span>{lang === 'bn' ? 'ফলো করুন' : 'Subscribe'}</Span>
+            </Button>
           </form>
 
           {/* Published Books Grid */}
-          <h3 style={{ fontSize: '1.25rem', fontWeight: 700, marginBottom: '16px', display: 'flex', alignItems: 'center', gap: '8px' }}>
+          <H3 style={{ fontSize: '1.25rem', fontWeight: 700, marginBottom: '16px', display: 'flex', alignItems: 'center', gap: '8px' }}>
             <BookOpen size={20} color="var(--accent-gold)" />
-            <span>{lang === 'bn' ? `স্টলের বইসমূহ (${stallBooks.length})` : `Books in Stall (${stallBooks.length})`}</span>
-          </h3>
+            <Span>{lang === 'bn' ? `স্টলের বইসমূহ (${stallBooks.length})` : `Books in Stall (${stallBooks.length})`}</Span>
+          </H3>
 
-          <div style={{
+          <Div style={{
             display: 'grid',
             gridTemplateColumns: 'repeat(auto-fill, minmax(180px, 1fr))',
             gap: '16px'
           }}>
             {stallBooks.map(book => (
-              <div 
+              <Div 
                 key={book.id}
                 className="glass-card"
-                onClick={() => {
+                onPress={() => {
                   setSelectedBook(book);
                   onClose();
                 }}
@@ -169,7 +169,7 @@ export const StallDetailModal = ({ stall, onClose }) => {
                   borderRadius: 'var(--radius-md)'
                 }}
               >
-                <img 
+                <Img 
                   src={book.cover} 
                   alt={book.title}
                   style={{
@@ -180,22 +180,22 @@ export const StallDetailModal = ({ stall, onClose }) => {
                     marginBottom: '10px'
                   }} 
                 />
-                <div style={{ fontWeight: 700, fontSize: '0.95rem', marginBottom: '4px', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+                <Div style={{ fontWeight: 700, fontSize: '0.95rem', marginBottom: '4px', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
                   {book.title}
-                </div>
-                <div style={{ fontSize: '0.8rem', color: 'var(--text-muted)', marginBottom: '8px' }}>
+                </Div>
+                <Div style={{ fontSize: '0.8rem', color: 'var(--text-muted)', marginBottom: '8px' }}>
                   {book.author}
-                </div>
-                <div style={{ fontWeight: 700, color: 'var(--primary-red)', fontSize: '0.95rem' }}>
+                </Div>
+                <Div style={{ fontWeight: 700, color: 'var(--primary-red)', fontSize: '0.95rem' }}>
                   ৳{book.price}
-                </div>
-              </div>
+                </Div>
+              </Div>
             ))}
-          </div>
+          </Div>
 
-        </div>
+        </Div>
 
-      </div>
-    </div>
+      </Div>
+    </Div>
   );
 };

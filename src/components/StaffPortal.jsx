@@ -1,22 +1,6 @@
 import React, { useState } from 'react';
 import { useApp } from '../context/AppContext';
-import { 
-  Store, 
-  Plus, 
-  Trash2, 
-  Edit3, 
-  Users, 
-  Send, 
-  LogOut, 
-  BookOpen, 
-  CheckCircle2, 
-  AlertCircle,
-  Lock,
-  Mail,
-  User,
-  Sparkles,
-  MapPin
-} from 'lucide-react';
+import { AlertCircle, BookOpen, Button, CheckCircle2, Div, Edit3, H2, H3, Img, Info, Input, Label, Lock, LogOut, Mail, MapPin, Plus, Select, Send, Span, Sparkles, Store, Table, Td, Textarea, Th, Tr, Trash2, User, Users } from '../html';
 
 export const StaffPortal = () => {
   const { 
@@ -112,11 +96,11 @@ export const StaffPortal = () => {
   // ---------------- NOT LOGGED IN STATE ----------------
   if (!staffUser) {
     return (
-      <div style={{ maxWidth: '480px', margin: '40px auto' }} className="animate-fade-in">
-        <div className="glass-card" style={{ padding: '32px', borderRadius: 'var(--radius-lg)' }}>
+      <Div style={{ maxWidth: '480px', margin: '40px auto' }} className="animate-fade-in">
+        <Div className="glass-card" style={{ padding: '32px', borderRadius: 'var(--radius-lg)' }}>
           
-          <div style={{ textAlign: 'center', marginBottom: '24px' }}>
-            <div style={{
+          <Div style={{ textAlign: 'center', marginBottom: '24px' }}>
+            <Div style={{
               width: '56px',
               height: '56px',
               borderRadius: 'var(--radius-md)',
@@ -127,47 +111,47 @@ export const StaffPortal = () => {
               marginBottom: '12px'
             }}>
               <Store size={28} color="#fff" />
-            </div>
-            <h2 style={{ fontSize: '1.6rem', fontWeight: 800 }}>
+            </Div>
+            <H2 style={{ fontSize: '1.6rem', fontWeight: 800 }}>
               {authMode === 'login' 
                 ? (lang === 'bn' ? 'স্টল স্টাফ ও প্রকাশক লগইন' : 'Publisher Login') 
                 : (lang === 'bn' ? 'নতুন স্টল রেজিস্টার করুন' : 'Register New Stall')}
-            </h2>
-            <p style={{ color: 'var(--text-muted)', fontSize: '0.88rem' }}>
+            </H2>
+            <P style={{ color: 'var(--text-muted)', fontSize: '0.88rem' }}>
               {lang === 'bn' ? 'বইমেলার স্টল ক্যাটালগ পরিচালনা ও অবজাভারদের নোটিফিকেশন পাঠাতে প্রবেশ করুন।' : 'Manage books, update stall info, and send broadcast alerts.'}
-            </p>
-          </div>
+            </P>
+          </Div>
 
           {/* Quick Demo Button */}
-          <button 
+          <Button 
             className="btn btn-gold" 
             style={{ width: '100%', marginBottom: '20px', padding: '12px' }}
-            onClick={() => loginStaff('', '', true)}
+            onPress={() => loginStaff('', '', true)}
           >
             <Sparkles size={18} />
-            <span>{lang === 'bn' ? 'ডেমো প্রকাশক হিসেবে ডিরেক্ট প্রবেশ' : 'Login as Demo Publisher (Prothoma)'}</span>
-          </button>
+            <Span>{lang === 'bn' ? 'ডেমো প্রকাশক হিসেবে ডিরেক্ট প্রবেশ' : 'Login as Demo Publisher (Prothoma)'}</Span>
+          </Button>
 
-          <div style={{ display: 'flex', alignItems: 'center', gap: '12px', margin: '20px 0', color: 'var(--text-muted)', fontSize: '0.8rem' }}>
-            <div style={{ flex: 1, height: '1px', background: 'var(--border-color)' }} />
-            <span>{lang === 'bn' ? 'অথবা ইমেইল দিয়ে প্রবেশ করুন' : 'OR WITH CREDENTIALS'}</span>
-            <div style={{ flex: 1, height: '1px', background: 'var(--border-color)' }} />
-          </div>
+          <Div style={{ display: 'flex', alignItems: 'center', gap: '12px', margin: '20px 0', color: 'var(--text-muted)', fontSize: '0.8rem' }}>
+            <Div style={{ flex: 1, height: '1px', background: 'var(--border-color)' }} />
+            <Span>{lang === 'bn' ? 'অথবা ইমেইল দিয়ে প্রবেশ করুন' : 'OR WITH CREDENTIALS'}</Span>
+            <Div style={{ flex: 1, height: '1px', background: 'var(--border-color)' }} />
+          </Div>
 
           {authMode === 'login' ? (
             <form onSubmit={handleLoginSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
-              <div>
-                <label style={{ fontSize: '0.85rem', fontWeight: 600, display: 'block', marginBottom: '6px' }}>
+              <Div>
+                <Label style={{ fontSize: '0.85rem', fontWeight: 600, display: 'block', marginBottom: '6px' }}>
                   {lang === 'bn' ? 'ইমেইল অ্যাড্রেস:' : 'Email Address:'}
-                </label>
-                <div style={{ position: 'relative' }}>
+                </Label>
+                <Div style={{ position: 'relative' }}>
                   <Mail size={16} color="var(--text-muted)" style={{ position: 'absolute', left: '12px', top: '50%', transform: 'translateY(-50%)' }} />
-                  <input 
+                  <Input 
                     type="email" 
                     required 
                     placeholder="prothoma@boimela.bd" 
                     value={email}
-                    onChange={(e) => setEmail(e.target.value)}
+                    onChangeText={setEmail}
                     style={{
                       width: '100%',
                       padding: '10px 12px 10px 38px',
@@ -178,21 +162,21 @@ export const StaffPortal = () => {
                       fontSize: '0.9rem'
                     }}
                   />
-                </div>
-              </div>
+                </Div>
+              </Div>
 
-              <div>
-                <label style={{ fontSize: '0.85rem', fontWeight: 600, display: 'block', marginBottom: '6px' }}>
+              <Div>
+                <Label style={{ fontSize: '0.85rem', fontWeight: 600, display: 'block', marginBottom: '6px' }}>
                   {lang === 'bn' ? 'পাসওয়ার্ড:' : 'Password:'}
-                </label>
-                <div style={{ position: 'relative' }}>
+                </Label>
+                <Div style={{ position: 'relative' }}>
                   <Lock size={16} color="var(--text-muted)" style={{ position: 'absolute', left: '12px', top: '50%', transform: 'translateY(-50%)' }} />
-                  <input 
+                  <Input 
                     type="password" 
                     required 
                     placeholder="••••••••" 
                     value={password}
-                    onChange={(e) => setPassword(e.target.value)}
+                    onChangeText={setPassword}
                     style={{
                       width: '100%',
                       padding: '10px 12px 10px 38px',
@@ -203,372 +187,373 @@ export const StaffPortal = () => {
                       fontSize: '0.9rem'
                     }}
                   />
-                </div>
-              </div>
+                </Div>
+              </Div>
 
-              <button type="submit" className="btn btn-primary" style={{ padding: '12px', marginTop: '8px' }}>
-                <span>{lang === 'bn' ? 'লগইন করুন' : 'Log In'}</span>
-              </button>
+              <Button type="submit" className="btn btn-primary" style={{ padding: '12px', marginTop: '8px' }}>
+                <Span>{lang === 'bn' ? 'লগইন করুন' : 'Log In'}</Span>
+              </Button>
 
-              <div style={{ textAlign: 'center', marginTop: '12px', fontSize: '0.85rem' }}>
-                <span style={{ color: 'var(--text-muted)' }}>{lang === 'bn' ? 'নতুন প্রকাশক?' : 'New Publisher?'} </span>
-                <button 
+              <Div style={{ textAlign: 'center', marginTop: '12px', fontSize: '0.85rem' }}>
+                <Span style={{ color: 'var(--text-muted)' }}>{lang === 'bn' ? 'নতুন প্রকাশক?' : 'New Publisher?'} </Span>
+                <Button 
                   type="button" 
-                  onClick={() => setAuthMode('signup')}
+                  onPress={() => setAuthMode('signup')}
                   style={{ background: 'none', border: 'none', color: 'var(--accent-gold)', fontWeight: 600, cursor: 'pointer' }}
                 >
                   {lang === 'bn' ? 'রেজিস্টার করুন' : 'Register Stall'}
-                </button>
-              </div>
+                </Button>
+              </Div>
             </form>
           ) : (
             <form onSubmit={handleSignupSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
-              <div>
-                <label style={{ fontSize: '0.85rem', fontWeight: 600, display: 'block', marginBottom: '4px' }}>স্টল / প্রকাশনীর নাম:</label>
-                <input 
+              <Div>
+                <Label style={{ fontSize: '0.85rem', fontWeight: 600, display: 'block', marginBottom: '4px' }}>স্টল / প্রকাশনীর নাম:</Label>
+                <Input 
                   type="text" 
                   required 
                   placeholder="যেমন: অন্বেষা প্রকাশন"
                   value={stallName}
-                  onChange={(e) => setStallName(e.target.value)}
+                  onChangeText={setStallName}
                   style={{ width: '100%', padding: '10px', borderRadius: 'var(--radius-sm)', background: 'var(--bg-secondary)', border: '1px solid var(--border-color)', color: '#fff' }}
                 />
-              </div>
+              </Div>
 
-              <div>
-                <label style={{ fontSize: '0.85rem', fontWeight: 600, display: 'block', marginBottom: '4px' }}>ইমেইল:</label>
-                <input 
+              <Div>
+                <Label style={{ fontSize: '0.85rem', fontWeight: 600, display: 'block', marginBottom: '4px' }}>ইমেইল:</Label>
+                <Input 
                   type="email" 
                   required 
                   placeholder="publisher@gmail.com"
                   value={email}
-                  onChange={(e) => setEmail(e.target.value)}
+                  onChangeText={setEmail}
                   style={{ width: '100%', padding: '10px', borderRadius: 'var(--radius-sm)', background: 'var(--bg-secondary)', border: '1px solid var(--border-color)', color: '#fff' }}
                 />
-              </div>
+              </Div>
 
-              <div>
-                <label style={{ fontSize: '0.85rem', fontWeight: 600, display: 'block', marginBottom: '4px' }}>পাসওয়ার্ড:</label>
-                <input 
+              <Div>
+                <Label style={{ fontSize: '0.85rem', fontWeight: 600, display: 'block', marginBottom: '4px' }}>পাসওয়ার্ড:</Label>
+                <Input 
                   type="password" 
                   required 
                   placeholder="••••••••"
                   value={password}
-                  onChange={(e) => setPassword(e.target.value)}
+                  onChangeText={setPassword}
                   style={{ width: '100%', padding: '10px', borderRadius: 'var(--radius-sm)', background: 'var(--bg-secondary)', border: '1px solid var(--border-color)', color: '#fff' }}
                 />
-              </div>
+              </Div>
 
-              <button type="submit" className="btn btn-primary" style={{ padding: '12px', marginTop: '8px' }}>
-                <span>{lang === 'bn' ? 'অ্যাকাউন্ট তৈরি করুন' : 'Create Publisher Account'}</span>
-              </button>
+              <Button type="submit" className="btn btn-primary" style={{ padding: '12px', marginTop: '8px' }}>
+                <Span>{lang === 'bn' ? 'অ্যাকাউন্ট তৈরি করুন' : 'Create Publisher Account'}</Span>
+              </Button>
 
-              <div style={{ textAlign: 'center', marginTop: '12px', fontSize: '0.85rem' }}>
-                <span style={{ color: 'var(--text-muted)' }}>{lang === 'bn' ? 'ইতিমধ্যে অ্যাকাউন্ট আছে?' : 'Already registered?'} </span>
-                <button 
+              <Div style={{ textAlign: 'center', marginTop: '12px', fontSize: '0.85rem' }}>
+                <Span style={{ color: 'var(--text-muted)' }}>{lang === 'bn' ? 'ইতিমধ্যে অ্যাকাউন্ট আছে?' : 'Already registered?'} </Span>
+                <Button 
                   type="button" 
-                  onClick={() => setAuthMode('login')}
+                  onPress={() => setAuthMode('login')}
                   style={{ background: 'none', border: 'none', color: 'var(--accent-gold)', fontWeight: 600, cursor: 'pointer' }}
                 >
                   {lang === 'bn' ? 'লগইন করুন' : 'Log In'}
-                </button>
-              </div>
+                </Button>
+              </Div>
             </form>
           )}
 
-        </div>
-      </div>
+        </Div>
+      </Div>
     );
   }
 
   // ---------------- LOGGED IN STAFF DASHBOARD ----------------
   return (
-    <div className="animate-fade-in" style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
+    <Div className="animate-fade-in" style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
       
       {/* Top Banner Card for Publisher */}
-      <div className="glass-card" style={{
+      <Div className="glass-card" style={{
         padding: '24px',
         borderRadius: 'var(--radius-lg)',
         background: 'linear-gradient(135deg, rgba(26, 36, 58, 0.9), rgba(19, 27, 46, 0.95))',
         borderLeft: '6px solid var(--accent-gold)'
       }}>
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '16px' }}>
-          <div>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '4px' }}>
-              <span className="badge badge-gold">{currentStall?.category}</span>
-              <span style={{ fontSize: '0.85rem', color: 'var(--text-muted)' }}>স্টাফ প্যানেল</span>
-            </div>
-            <h2 style={{ fontSize: '2rem', fontWeight: 800, margin: 0 }}>
+        <Div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '16px' }}>
+          <Div>
+            <Div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '4px' }}>
+              <Span className="badge badge-gold">{currentStall?.category}</Span>
+              <Span style={{ fontSize: '0.85rem', color: 'var(--text-muted)' }}>স্টাফ প্যানেল</Span>
+            </Div>
+            <H2 style={{ fontSize: '2rem', fontWeight: 800, margin: 0 }}>
               {currentStall?.name}
-            </h2>
-            <div style={{ fontSize: '0.9rem', color: 'var(--text-muted)', marginTop: '4px', display: 'flex', gap: '16px' }}>
-              <span>📍 স্টল #: <strong>{currentStall?.stallNumber}</strong></span>
-              <span>🏢 {currentStall?.zone}</span>
-            </div>
-          </div>
+            </H2>
+            <Div style={{ fontSize: '0.9rem', color: 'var(--text-muted)', marginTop: '4px', display: 'flex', gap: '16px' }}>
+              <Span>📍 স্টল #: <strong>{currentStall?.stallNumber}</strong></Span>
+              <Span>🏢 {currentStall?.zone}</Span>
+            </Div>
+          </Div>
 
-          <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap' }}>
-            <button className="btn btn-gold" onClick={() => setShowAddBookModal(true)}>
+          <Div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap' }}>
+            <Button className="btn btn-gold" onPress={() => setShowAddBookModal(true)}>
               <Plus size={18} />
-              <span>{lang === 'bn' ? 'নতুন বই যুক্ত করুন' : 'Add New Book'}</span>
-            </button>
+              <Span>{lang === 'bn' ? 'নতুন বই যুক্ত করুন' : 'Add New Book'}</Span>
+            </Button>
 
-            <button className="btn btn-teal" onClick={() => setShowBroadcastModal(true)}>
+            <Button className="btn btn-teal" onPress={() => setShowBroadcastModal(true)}>
               <Send size={18} />
-              <span>{lang === 'bn' ? 'ব্রডকাস্ট নোটিশ' : 'Send Broadcast'}</span>
-            </button>
+              <Span>{lang === 'bn' ? 'ব্রডকাস্ট নোটিশ' : 'Send Broadcast'}</Span>
+            </Button>
 
-            <button className="btn btn-secondary btn-icon" onClick={logoutStaff} title="Logout">
+            <Button className="btn btn-secondary btn-icon" onPress={logoutStaff} title="Logout">
               <LogOut size={18} color="#f87171" />
-            </button>
-          </div>
-        </div>
-      </div>
+            </Button>
+          </Div>
+        </Div>
+      </Div>
 
       {/* Metrics Row */}
-      <div style={{
+      <Div style={{
         display: 'grid',
         gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))',
         gap: '16px'
       }}>
-        <div className="glass-card" style={{ padding: '20px', borderRadius: 'var(--radius-md)' }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-            <div style={{ padding: '12px', borderRadius: 'var(--radius-md)', background: 'rgba(217, 38, 56, 0.15)' }}>
+        <Div className="glass-card" style={{ padding: '20px', borderRadius: 'var(--radius-md)' }}>
+          <Div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+            <Div style={{ padding: '12px', borderRadius: 'var(--radius-md)', background: 'rgba(217, 38, 56, 0.15)' }}>
               <BookOpen size={24} color="var(--primary-red)" />
-            </div>
-            <div>
-              <div style={{ fontSize: '1.6rem', fontWeight: 800 }}>{stallBooks.length}</div>
-              <div style={{ fontSize: '0.85rem', color: 'var(--text-muted)' }}>মোট নিবন্ধিত বই</div>
-            </div>
-          </div>
-        </div>
+            </Div>
+            <Div>
+              <Div style={{ fontSize: '1.6rem', fontWeight: 800 }}>{stallBooks.length}</Div>
+              <Div style={{ fontSize: '0.85rem', color: 'var(--text-muted)' }}>মোট নিবন্ধিত বই</Div>
+            </Div>
+          </Div>
+        </Div>
 
-        <div className="glass-card" style={{ padding: '20px', borderRadius: 'var(--radius-md)' }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-            <div style={{ padding: '12px', borderRadius: 'var(--radius-md)', background: 'rgba(13, 148, 136, 0.15)' }}>
+        <Div className="glass-card" style={{ padding: '20px', borderRadius: 'var(--radius-md)' }}>
+          <Div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+            <Div style={{ padding: '12px', borderRadius: 'var(--radius-md)', background: 'rgba(13, 148, 136, 0.15)' }}>
               <Users size={24} color="var(--accent-teal-light)" />
-            </div>
-            <div>
-              <div style={{ fontSize: '1.6rem', fontWeight: 800 }}>{stallObservers.length}</div>
-              <div style={{ fontSize: '0.85rem', color: 'var(--text-muted)' }}>সক্রিয় অবজারভার (Subscribers)</div>
-            </div>
-          </div>
-        </div>
-      </div>
+            </Div>
+            <Div>
+              <Div style={{ fontSize: '1.6rem', fontWeight: 800 }}>{stallObservers.length}</Div>
+              <Div style={{ fontSize: '0.85rem', color: 'var(--text-muted)' }}>সক্রিয় অবজারভার (Subscribers)</Div>
+            </Div>
+          </Div>
+        </Div>
+      </Div>
 
       {/* Published Books Management Table */}
-      <div className="glass-card" style={{ padding: '24px', borderRadius: 'var(--radius-lg)' }}>
-        <h3 style={{ fontSize: '1.25rem', fontWeight: 700, marginBottom: '16px', display: 'flex', alignItems: 'center', gap: '8px' }}>
+      <Div className="glass-card" style={{ padding: '24px', borderRadius: 'var(--radius-lg)' }}>
+        <H3 style={{ fontSize: '1.25rem', fontWeight: 700, marginBottom: '16px', display: 'flex', alignItems: 'center', gap: '8px' }}>
           <BookOpen size={20} color="var(--accent-gold)" />
-          <span>{lang === 'bn' ? 'স্টলের প্রকাশিত বইসমূহের তালিকা' : 'Stall Books Inventory'}</span>
-        </h3>
+          <Span>{lang === 'bn' ? 'স্টলের প্রকাশিত বইসমূহের তালিকা' : 'Stall Books Inventory'}</Span>
+        </H3>
 
         {stallBooks.length === 0 ? (
-          <div style={{ textAlign: 'center', padding: '40px', color: 'var(--text-muted)' }}>
+          <Div style={{ textAlign: 'center', padding: '40px', color: 'var(--text-muted)' }}>
             কোনো বই যুক্ত করা হয়নি। 'নতুন বই যুক্ত করুন' বোতামে ক্লিক করুন।
-          </div>
+          </Div>
         ) : (
-          <div style={{ overflowX: 'auto' }}>
-            <table style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left', fontSize: '0.9rem' }}>
+          <Div style={{ overflowX: 'auto' }}>
+            <Table style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left', fontSize: '0.9rem' }}>
               <thead>
-                <tr style={{ borderBottom: '1px solid var(--border-color)', color: 'var(--text-muted)' }}>
-                  <th style={{ padding: '12px' }}>কভার</th>
-                  <th style={{ padding: '12px' }}>বইয়ের নাম</th>
-                  <th style={{ padding: '12px' }}>লেখক</th>
-                  <th style={{ padding: '12px' }}>ক্যাটাগরি</th>
-                  <th style={{ padding: '12px' }}>মূল্য</th>
-                  <th style={{ padding: '12px', textAlign: 'right' }}>অ্যাকশন</th>
-                </tr>
+                <Tr style={{ borderBottom: '1px solid var(--border-color)', color: 'var(--text-muted)' }}>
+                  <Th style={{ padding: '12px' }}>কভার</Th>
+                  <Th style={{ padding: '12px' }}>বইয়ের নাম</Th>
+                  <Th style={{ padding: '12px' }}>লেখক</Th>
+                  <Th style={{ padding: '12px' }}>ক্যাটাগরি</Th>
+                  <Th style={{ padding: '12px' }}>মূল্য</Th>
+                  <Th style={{ padding: '12px', textAlign: 'right' }}>অ্যাকশন</Th>
+                </Tr>
               </thead>
               <tbody>
                 {stallBooks.map(book => (
-                  <tr key={book.id} style={{ borderBottom: '1px solid var(--border-color)' }}>
-                    <td style={{ padding: '12px' }}>
-                      <img src={book.cover} alt={book.title} style={{ width: '40px', height: '54px', objectFit: 'cover', borderRadius: '4px' }} />
-                    </td>
-                    <td style={{ padding: '12px', fontWeight: 700 }}>{book.title}</td>
-                    <td style={{ padding: '12px', color: 'var(--text-muted)' }}>{book.author}</td>
-                    <td style={{ padding: '12px' }}><span className="badge badge-gold">{book.genreBn || book.genre}</span></td>
-                    <td style={{ padding: '12px', fontWeight: 800, color: 'var(--primary-red)' }}>৳{book.price}</td>
-                    <td style={{ padding: '12px', textAlign: 'right' }}>
-                      <button className="btn btn-secondary btn-icon" onClick={() => deleteBook(book.id)} title="Delete Book">
+                  <Tr key={book.id} style={{ borderBottom: '1px solid var(--border-color)' }}>
+                    <Td style={{ padding: '12px' }}>
+                      <Img src={book.cover} alt={book.title} style={{ width: '40px', height: '54px', objectFit: 'cover', borderRadius: '4px' }} />
+                    </Td>
+                    <Td style={{ padding: '12px', fontWeight: 700 }}>{book.title}</Td>
+                    <Td style={{ padding: '12px', color: 'var(--text-muted)' }}>{book.author}</Td>
+                    <Td style={{ padding: '12px' }}><Span className="badge badge-gold">{book.genreBn || book.genre}</Span></Td>
+                    <Td style={{ padding: '12px', fontWeight: 800, color: 'var(--primary-red)' }}>৳{book.price}</Td>
+                    <Td style={{ padding: '12px', textAlign: 'right' }}>
+                      <Button className="btn btn-secondary btn-icon" onPress={() => deleteBook(book.id)} title="Delete Book">
                         <Trash2 size={16} color="#f87171" />
-                      </button>
-                    </td>
-                  </tr>
+                      </Button>
+                    </Td>
+                  </Tr>
                 ))}
               </tbody>
-            </table>
-          </div>
+            </Table>
+          </Div>
         )}
-      </div>
+      </Div>
 
       {/* Observer Subscribers List (ViewObserversActivity.java & RegisterObserverList) */}
-      <div className="glass-card" style={{ padding: '24px', borderRadius: 'var(--radius-lg)' }}>
-        <h3 style={{ fontSize: '1.25rem', fontWeight: 700, marginBottom: '16px', display: 'flex', alignItems: 'center', gap: '8px' }}>
+      <Div className="glass-card" style={{ padding: '24px', borderRadius: 'var(--radius-lg)' }}>
+        <H3 style={{ fontSize: '1.25rem', fontWeight: 700, marginBottom: '16px', display: 'flex', alignItems: 'center', gap: '8px' }}>
           <Users size={20} color="var(--accent-teal-light)" />
-          <span>{lang === 'bn' ? 'স্টল অবজারভার তালিকা (Subscribed Observers)' : 'Registered Observers List'}</span>
-        </h3>
+          <Span>{lang === 'bn' ? 'স্টল অবজারভার তালিকা (Subscribed Observers)' : 'Registered Observers List'}</Span>
+        </H3>
 
         {stallObservers.length === 0 ? (
-          <div style={{ textAlign: 'center', padding: '40px', color: 'var(--text-muted)' }}>
+          <Div style={{ textAlign: 'center', padding: '40px', color: 'var(--text-muted)' }}>
             এখনও কোনো পাঠক এই স্টল সাবস্ক্রাইব করেননি।
-          </div>
+          </Div>
         ) : (
-          <div style={{ overflowX: 'auto' }}>
-            <table style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left', fontSize: '0.9rem' }}>
+          <Div style={{ overflowX: 'auto' }}>
+            <Table style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left', fontSize: '0.9rem' }}>
               <thead>
-                <tr style={{ borderBottom: '1px solid var(--border-color)', color: 'var(--text-muted)' }}>
-                  <th style={{ padding: '12px' }}>অবজারভার নাম</th>
-                  <th style={{ padding: '12px' }}>ইমেইল অ্যাড্রেস</th>
-                  <th style={{ padding: '12px' }}>যুক্ত হওয়ার তারিখ</th>
-                  <th style={{ padding: '12px' }}>স্ট্যাটাস</th>
-                </tr>
+                <Tr style={{ borderBottom: '1px solid var(--border-color)', color: 'var(--text-muted)' }}>
+                  <Th style={{ padding: '12px' }}>অবজারভার নাম</Th>
+                  <Th style={{ padding: '12px' }}>ইমেইল অ্যাড্রেস</Th>
+                  <Th style={{ padding: '12px' }}>যুক্ত হওয়ার তারিখ</Th>
+                  <Th style={{ padding: '12px' }}>স্ট্যাটাস</Th>
+                </Tr>
               </thead>
               <tbody>
                 {stallObservers.map(obs => (
-                  <tr key={obs.id} style={{ borderBottom: '1px solid var(--border-color)' }}>
-                    <td style={{ padding: '12px', fontWeight: 600 }}>{obs.name}</td>
-                    <td style={{ padding: '12px', color: 'var(--accent-teal-light)' }}>{obs.email}</td>
-                    <td style={{ padding: '12px', color: 'var(--text-muted)' }}>{obs.joinedAt}</td>
-                    <td style={{ padding: '12px' }}>
-                      <span className="badge badge-teal">সক্রিয় (Active)</span>
-                    </td>
-                  </tr>
+                  <Tr key={obs.id} style={{ borderBottom: '1px solid var(--border-color)' }}>
+                    <Td style={{ padding: '12px', fontWeight: 600 }}>{obs.name}</Td>
+                    <Td style={{ padding: '12px', color: 'var(--accent-teal-light)' }}>{obs.email}</Td>
+                    <Td style={{ padding: '12px', color: 'var(--text-muted)' }}>{obs.joinedAt}</Td>
+                    <Td style={{ padding: '12px' }}>
+                      <Span className="badge badge-teal">সক্রিয় (Active)</Span>
+                    </Td>
+                  </Tr>
                 ))}
               </tbody>
-            </table>
-          </div>
+            </Table>
+          </Div>
         )}
-      </div>
+      </Div>
 
       {/* ---------------- ADD BOOK MODAL (AddInformationActivity.java) ---------------- */}
       {showAddBookModal && (
-        <div className="modal-overlay" onClick={() => setShowAddBookModal(false)}>
-          <div className="modal-content" onClick={(e) => e.stopPropagation()} style={{ maxWidth: '550px', padding: '24px' }}>
-            <h3 style={{ fontSize: '1.3rem', fontWeight: 700, marginBottom: '16px' }}>
+        <Div className="modal-overlay" onPress={() => setShowAddBookModal(false)}>
+          <Div className="modal-content" onPress={(e) => e.stopPropagation()} style={{ maxWidth: '550px', padding: '24px' }}>
+            <H3 style={{ fontSize: '1.3rem', fontWeight: 700, marginBottom: '16px' }}>
               {lang === 'bn' ? 'স্টলে নতুন বই যুক্ত করুন' : 'Add New Book Information'}
-            </h3>
+            </H3>
 
             <form onSubmit={handleAddBookSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
-              <div>
-                <label style={{ fontSize: '0.85rem', fontWeight: 600, display: 'block', marginBottom: '4px' }}>বইয়ের নাম (Book Name):</label>
-                <input 
+              <Div>
+                <Label style={{ fontSize: '0.85rem', fontWeight: 600, display: 'block', marginBottom: '4px' }}>বইয়ের নাম (Book Name):</Label>
+                <Input 
                   type="text" required placeholder="যেমন: দেওয়াল"
-                  value={newBookTitle} onChange={(e) => setNewBookTitle(e.target.value)}
+                  value={newBookTitle} onChangeText={setNewBookTitle}
                   style={{ width: '100%', padding: '10px', borderRadius: 'var(--radius-sm)', background: 'var(--bg-secondary)', border: '1px solid var(--border-color)', color: '#fff' }}
                 />
-              </div>
+              </Div>
 
-              <div>
-                <label style={{ fontSize: '0.85rem', fontWeight: 600, display: 'block', marginBottom: '4px' }}>লেখকের নাম (Author Name):</label>
-                <input 
+              <Div>
+                <Label style={{ fontSize: '0.85rem', fontWeight: 600, display: 'block', marginBottom: '4px' }}>লেখকের নাম (Author Name):</Label>
+                <Input 
                   type="text" required placeholder="যেমন: হুমায়ূন আহমেদ"
-                  value={newBookAuthor} onChange={(e) => setNewBookAuthor(e.target.value)}
+                  value={newBookAuthor} onChangeText={setNewBookAuthor}
                   style={{ width: '100%', padding: '10px', borderRadius: 'var(--radius-sm)', background: 'var(--bg-secondary)', border: '1px solid var(--border-color)', color: '#fff' }}
                 />
-              </div>
+              </Div>
 
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px' }}>
-                <div>
-                  <label style={{ fontSize: '0.85rem', fontWeight: 600, display: 'block', marginBottom: '4px' }}>মূল্য (৳ BDT):</label>
-                  <input 
+              <Div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px' }}>
+                <Div>
+                  <Label style={{ fontSize: '0.85rem', fontWeight: 600, display: 'block', marginBottom: '4px' }}>মূল্য (৳ BDT):</Label>
+                  <Input 
                     type="number" required placeholder="450"
-                    value={newBookPrice} onChange={(e) => setNewBookPrice(e.target.value)}
+                    value={newBookPrice} onChangeText={setNewBookPrice}
                     style={{ width: '100%', padding: '10px', borderRadius: 'var(--radius-sm)', background: 'var(--bg-secondary)', border: '1px solid var(--border-color)', color: '#fff' }}
                   />
-                </div>
+                </Div>
 
-                <div>
-                  <label style={{ fontSize: '0.85rem', fontWeight: 600, display: 'block', marginBottom: '4px' }}>ক্যাটাগরি:</label>
-                  <select 
-                    value={newBookGenre} onChange={(e) => setNewBookGenre(e.target.value)}
+                <Div>
+                  <Label style={{ fontSize: '0.85rem', fontWeight: 600, display: 'block', marginBottom: '4px' }}>ক্যাটাগরি:</Label>
+                  <Select 
+                    value={newBookGenre} onChange={setNewBookGenre}
+                    options={[
+                      { value: 'Fiction', label: 'উপন্যাস (Fiction)' },
+                      { value: 'Sci-Fi', label: 'সায়েন্স ফিকশন (Sci-Fi)' },
+                      { value: 'History', label: 'ইতিহাস ও প্রবন্ধ (History)' },
+                      { value: 'Thriller', label: 'গোয়েন্দা ও রোমাঞ্চ (Thriller)' },
+                      { value: 'Poetry', label: 'কবিতা সংকলন (Poetry)' },
+                    ]}
                     style={{ width: '100%', padding: '10px', borderRadius: 'var(--radius-sm)', background: 'var(--bg-secondary)', border: '1px solid var(--border-color)', color: '#fff' }}
-                  >
-                    <option value="Fiction">উপন্যাস (Fiction)</option>
-                    <option value="Sci-Fi">সায়েন্স ফিকশন (Sci-Fi)</option>
-                    <option value="History">ইতিহাস ও প্রবন্ধ (History)</option>
-                    <option value="Thriller">গোয়েন্দা ও রোমাঞ্চ (Thriller)</option>
-                    <option value="Poetry">কবিতা সংকলন (Poetry)</option>
-                  </select>
-                </div>
-              </div>
+                  />
+                </Div>
+              </Div>
 
-              <div>
-                <label style={{ fontSize: '0.85rem', fontWeight: 600, display: 'block', marginBottom: '4px' }}>কভার ছবি ইউআরএল (Cover Image URL):</label>
-                <input 
+              <Div>
+                <Label style={{ fontSize: '0.85rem', fontWeight: 600, display: 'block', marginBottom: '4px' }}>কভার ছবি ইউআরএল (Cover Image URL):</Label>
+                <Input 
                   type="text" 
-                  value={newBookCover} onChange={(e) => setNewBookCover(e.target.value)}
+                  value={newBookCover} onChangeText={setNewBookCover}
                   style={{ width: '100%', padding: '10px', borderRadius: 'var(--radius-sm)', background: 'var(--bg-secondary)', border: '1px solid var(--border-color)', color: '#fff' }}
                 />
-              </div>
+              </Div>
 
-              <div>
-                <label style={{ fontSize: '0.85rem', fontWeight: 600, display: 'block', marginBottom: '4px' }}>সংক্ষিপ্ত বিবরণ:</label>
-                <textarea 
+              <Div>
+                <Label style={{ fontSize: '0.85rem', fontWeight: 600, display: 'block', marginBottom: '4px' }}>সংক্ষিপ্ত বিবরণ:</Label>
+                <Textarea 
                   rows={3} placeholder="বইয়ের বিষয়বস্তু সম্পর্কে তথ্য..."
-                  value={newBookDesc} onChange={(e) => setNewBookDesc(e.target.value)}
+                  value={newBookDesc} onChangeText={setNewBookDesc}
                   style={{ width: '100%', padding: '10px', borderRadius: 'var(--radius-sm)', background: 'var(--bg-secondary)', border: '1px solid var(--border-color)', color: '#fff' }}
                 />
-              </div>
+              </Div>
 
-              <div style={{ display: 'flex', gap: '10px', marginTop: '12px' }}>
-                <button type="submit" className="btn btn-primary" style={{ flex: 1 }}>
-                  <span>সংরক্ষণ করুন</span>
-                </button>
-                <button type="button" className="btn btn-secondary" onClick={() => setShowAddBookModal(false)}>
-                  <span>বাতিল</span>
-                </button>
-              </div>
+              <Div style={{ display: 'flex', gap: '10px', marginTop: '12px' }}>
+                <Button type="submit" className="btn btn-primary" style={{ flex: 1 }}>
+                  <Span>সংরক্ষণ করুন</Span>
+                </Button>
+                <Button type="button" className="btn btn-secondary" onPress={() => setShowAddBookModal(false)}>
+                  <Span>বাতিল</Span>
+                </Button>
+              </Div>
             </form>
-          </div>
-        </div>
+          </Div>
+        </Div>
       )}
 
       {/* ---------------- BROADCAST MESSAGE MODAL ---------------- */}
       {showBroadcastModal && (
-        <div className="modal-overlay" onClick={() => setShowBroadcastModal(false)}>
-          <div className="modal-content" onClick={(e) => e.stopPropagation()} style={{ maxWidth: '500px', padding: '24px' }}>
-            <h3 style={{ fontSize: '1.3rem', fontWeight: 700, marginBottom: '16px' }}>
+        <Div className="modal-overlay" onPress={() => setShowBroadcastModal(false)}>
+          <Div className="modal-content" onPress={(e) => e.stopPropagation()} style={{ maxWidth: '500px', padding: '24px' }}>
+            <H3 style={{ fontSize: '1.3rem', fontWeight: 700, marginBottom: '16px' }}>
               {lang === 'bn' ? 'অবজারভারদের ব্রডকাস্ট নোটিশ পাঠান' : 'Send Broadcast to Observers'}
-            </h3>
-            <p style={{ fontSize: '0.88rem', color: 'var(--text-muted)', marginBottom: '16px' }}>
+            </H3>
+            <P style={{ fontSize: '0.88rem', color: 'var(--text-muted)', marginBottom: '16px' }}>
               এই স্টল সাবস্ক্রাইব করা সকল {stallObservers.length} জন গ্রাহককে সরাসরি অ্যাপ ও ইমেইল নোটিফিকেশন পাঠানো হবে।
-            </p>
+            </P>
 
             <form onSubmit={handleSendBroadcast} style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
-              <div>
-                <label style={{ fontSize: '0.85rem', fontWeight: 600, display: 'block', marginBottom: '4px' }}>শিরোনাম:</label>
-                <input 
+              <Div>
+                <Label style={{ fontSize: '0.85rem', fontWeight: 600, display: 'block', marginBottom: '4px' }}>শিরোনাম:</Label>
+                <Input 
                   type="text" required placeholder="যেমন: বিশেষ মোড়ক উন্মোচন অনুষ্ঠান!"
-                  value={broadcastTitle} onChange={(e) => setBroadcastTitle(e.target.value)}
+                  value={broadcastTitle} onChangeText={setBroadcastTitle}
                   style={{ width: '100%', padding: '10px', borderRadius: 'var(--radius-sm)', background: 'var(--bg-secondary)', border: '1px solid var(--border-color)', color: '#fff' }}
                 />
-              </div>
+              </Div>
 
-              <div>
-                <label style={{ fontSize: '0.85rem', fontWeight: 600, display: 'block', marginBottom: '4px' }}>বার্তা/বিবরণ:</label>
-                <textarea 
+              <Div>
+                <Label style={{ fontSize: '0.85rem', fontWeight: 600, display: 'block', marginBottom: '4px' }}>বার্তা/বিবরণ:</Label>
+                <Textarea 
                   rows={4} required placeholder="আজ সন্ধ্যা ৬টায় আমাদের স্টলে উপস্থিত থাকবেন বিশিষ্ট কবি..."
-                  value={broadcastMessage} onChange={(e) => setBroadcastMessage(e.target.value)}
+                  value={broadcastMessage} onChangeText={setBroadcastMessage}
                   style={{ width: '100%', padding: '10px', borderRadius: 'var(--radius-sm)', background: 'var(--bg-secondary)', border: '1px solid var(--border-color)', color: '#fff' }}
                 />
-              </div>
+              </Div>
 
-              <div style={{ display: 'flex', gap: '10px', marginTop: '12px' }}>
-                <button type="submit" className="btn btn-teal" style={{ flex: 1 }}>
+              <Div style={{ display: 'flex', gap: '10px', marginTop: '12px' }}>
+                <Button type="submit" className="btn btn-teal" style={{ flex: 1 }}>
                   <Send size={16} />
-                  <span>পাঠিয়ে দিন</span>
-                </button>
-                <button type="button" className="btn btn-secondary" onClick={() => setShowBroadcastModal(false)}>
-                  <span>বাতিল</span>
-                </button>
-              </div>
+                  <Span>পাঠিয়ে দিন</Span>
+                </Button>
+                <Button type="button" className="btn btn-secondary" onPress={() => setShowBroadcastModal(false)}>
+                  <Span>বাতিল</Span>
+                </Button>
+              </Div>
             </form>
-          </div>
-        </div>
+          </Div>
+        </Div>
       )}
 
-    </div>
+    </Div>
   );
 };
