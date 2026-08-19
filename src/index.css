@@ -52,9 +52,14 @@ html, body {
   font-family: var(--font-primary);
   background-color: var(--bg-primary);
   color: var(--text-main);
+  height: 100%;
   min-height: 100vh;
   overflow-x: hidden;
   line-height: 1.5;
+}
+
+#root {
+  height: 100%;
 }
 
 /* Custom Scrollbar */
@@ -181,10 +186,44 @@ html, body {
 
 .main-content {
   flex: 1;
-  max-width: 1300px;
+  width: 100%;
+  max-width: 1600px;
+  margin: 0 auto;
+  padding: 24px 24px;
+}
+
+@media (min-width: 1920px) {
+  .main-content {
+    max-width: 1720px;
+    padding: 32px 40px;
+  }
+}
+
+@media (max-width: 640px) {
+  .main-content {
+    padding: 16px 14px;
+  }
+}
+
+.header-inner {
+  max-width: 1600px;
   width: 100%;
   margin: 0 auto;
-  padding: 24px 16px;
+  padding: 12px 24px;
+}
+
+@media (min-width: 1920px) {
+  .header-inner {
+    max-width: 1720px;
+    padding: 14px 40px;
+  }
+}
+
+@media (max-width: 640px) {
+  .header-inner {
+    padding: 10px 14px;
+    gap: 10px;
+  }
 }
 
 /* Animations */
@@ -258,4 +297,64 @@ html, body {
   background: rgba(13, 148, 136, 0.2);
   color: #2dd4bf;
   border: 1px solid rgba(13, 148, 136, 0.4);
+}
+
+/* ===================== RESPONSIVE ===================== */
+
+/* Tablet & down: header actions wrap, search goes full width */
+@media (max-width: 900px) {
+  .header-inner {
+    flex-wrap: wrap;
+  }
+  .header-inner > div[style*="flex: 1"] {
+    flex-basis: 100%;
+    order: 3;
+    max-width: 100%;
+  }
+}
+
+/* Mobile: compact header, hide map button text, smaller title */
+@media (max-width: 640px) {
+  .map-btn-label {
+    display: none;
+  }
+  .header-inner h1 {
+    font-size: 1.05rem !important;
+  }
+  .header-inner > div[style*="cursor: pointer"] span[style*="0.75rem"] {
+    display: none;
+  }
+}
+
+/* Hero / Splash */
+@media (max-width: 768px) {
+  .splash-hero {
+    padding: 24px 16px !important;
+  }
+  .splash-hero h2 {
+    font-size: 1.8rem !important;
+  }
+  .splash-hero p {
+    font-size: 0.95rem !important;
+  }
+  .splash-metrics {
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 8px !important;
+    padding: 12px !important;
+  }
+  .splash-metrics > div > div:first-child {
+    font-size: 1.1rem !important;
+  }
+  .splash-metrics > div > div:last-child {
+    font-size: 0.68rem !important;
+  }
+}
+
+/* Mobile grids: single column so cards are full width */
+@media (max-width: 520px) {
+  .book-grid,
+  .stall-grid,
+  .wishlist-grid {
+    grid-template-columns: 1fr !important;
+  }
 }

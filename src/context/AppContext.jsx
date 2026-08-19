@@ -1,46 +1,70 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import { INITIAL_STALLS, INITIAL_BOOKS, INITIAL_OBSERVERS, INITIAL_ANNOUNCEMENTS } from '../data/initialData';
 
+// Safe storage shim: localStorage is web-only. On native (Android/iOS) we fall
+// back to an in-memory store so the app doesn't crash at launch.
+const memoryStore = {};
+const safeStorage = {
+  getItem: (key) => {
+    try {
+      if (typeof localStorage !== 'undefined') return localStorage.getItem(key);
+    } catch (e) { /* ignore */ }
+    return key in memoryStore ? memoryStore[key] : null;
+  },
+  setItem: (key, value) => {
+    try {
+      if (typeof localStorage !== 'undefined') { localStorage.setItem(key, value); return; }
+    } catch (e) { /* ignore */ }
+    memoryStore[key] = value;
+  },
+  removeItem: (key) => {
+    try {
+      if (typeof localStorage !== 'undefined') { localStorage.removeItem(key); return; }
+    } catch (e) { /* ignore */ }
+    delete memoryStore[key];
+  },
+};
+
 const AppContext = createContext();
 
 export const AppProvider = ({ children }) => {
   // Navigation & Role State
   const [currentView, setCurrentView] = useState(() => {
-    return localStorage.getItem('boimela_view') || 'home';
+    return safeStorage.getItem('boimela_view') || 'home';
   });
   const [userRole, setUserRole] = useState(() => {
-    return localStorage.getItem('boimela_role') || 'visitor'; // 'visitor' | 'staff'
+    return safeStorage.getItem('boimela_role') || 'visitor'; // 'visitor' | 'staff'
   });
   
   // Staff Authentication State
   const [staffUser, setStaffUser] = useState(() => {
-    const saved = localStorage.getItem('boimela_staff_user');
+    const saved = safeStorage.getItem('boimela_staff_user');
     return saved ? JSON.parse(saved) : null;
   });
 
   // Core Data Lists
   const [stalls, setStalls] = useState(() => {
-    const saved = localStorage.getItem('boimela_stalls');
+    const saved = safeStorage.getItem('boimela_stalls');
     return saved ? JSON.parse(saved) : INITIAL_STALLS;
   });
 
   const [books, setBooks] = useState(() => {
-    const saved = localStorage.getItem('boimela_books');
+    const saved = safeStorage.getItem('boimela_books');
     return saved ? JSON.parse(saved) : INITIAL_BOOKS;
   });
 
   const [observers, setObservers] = useState(() => {
-    const saved = localStorage.getItem('boimela_observers');
+    const saved = safeStorage.getItem('boimela_observers');
     return saved ? JSON.parse(saved) : INITIAL_OBSERVERS;
   });
 
   const [announcements, setAnnouncements] = useState(() => {
-    const saved = localStorage.getItem('boimela_announcements');
+    const saved = safeStorage.getItem('boimela_announcements');
     return saved ? JSON.parse(saved) : INITIAL_ANNOUNCEMENTS;
   });
 
   const [wishlist, setWishlist] = useState(() => {
-    const saved = localStorage.getItem('boimela_wishlist');
+    const saved = safeStorage.getItem('boimela_wishlist');
     return saved ? JSON.parse(saved) : ['book-101', 'book-106'];
   });
 
@@ -62,34 +86,34 @@ export const AppProvider = ({ children }) => {
 
   // Synchronize LocalStorage
   useEffect(() => {
-    localStorage.setItem('boimela_stalls', JSON.stringify(stalls));
+    safeStorage.setItem('boimela_stalls', JSON.stringify(stalls));
   }, [stalls]);
 
   useEffect(() => {
-    localStorage.setItem('boimela_books', JSON.stringify(books));
+    safeStorage.setItem('boimela_books', JSON.stringify(books));
   }, [books]);
 
   useEffect(() => {
-    localStorage.setItem('boimela_observers', JSON.stringify(observers));
+    safeStorage.setItem('boimela_observers', JSON.stringify(observers));
   }, [observers]);
 
   useEffect(() => {
-    localStorage.setItem('boimela_announcements', JSON.stringify(announcements));
+    safeStorage.setItem('boimela_announcements', JSON.stringify(announcements));
   }, [announcements]);
 
   useEffect(() => {
-    localStorage.setItem('boimela_wishlist', JSON.stringify(wishlist));
+    safeStorage.setItem('boimela_wishlist', JSON.stringify(wishlist));
   }, [wishlist]);
 
   useEffect(() => {
-    localStorage.setItem('boimela_role', userRole);
+    safeStorage.setItem('boimela_role', userRole);
   }, [userRole]);
 
   useEffect(() => {
     if (staffUser) {
-      localStorage.setItem('boimela_staff_user', JSON.stringify(staffUser));
+      safeStorage.setItem('boimela_staff_user', JSON.stringify(staffUser));
     } else {
-      localStorage.removeItem('boimela_staff_user');
+      safeStorage.removeItem('boimela_staff_user');
     }
   }, [staffUser]);
 

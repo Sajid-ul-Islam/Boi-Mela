@@ -6,7 +6,7 @@ export const SplashScreen = ({ onEnterVisitor, onEnterStaff }) => {
   const { lang } = useApp();
 
   return (
-    <div style={{
+    <div className="splash-hero" style={{
       background: 'radial-gradient(circle at top center, rgba(217, 38, 56, 0.15), transparent 70%), var(--bg-primary)',
       padding: '40px 20px',
       borderRadius: 'var(--radius-lg)',
@@ -28,7 +28,7 @@ export const SplashScreen = ({ onEnterVisitor, onEnterStaff }) => {
       }} />
 
       <div style={{
-        maxWidth: '1000px',
+        width: '100%',
         margin: '0 auto',
         display: 'grid',
         gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
@@ -86,7 +86,7 @@ export const SplashScreen = ({ onEnterVisitor, onEnterStaff }) => {
           </p>
 
           {/* Quick Metrics */}
-          <div style={{
+          <div className="splash-metrics" style={{
             display: 'grid',
             gridTemplateColumns: 'repeat(3, 1fr)',
             gap: '16px',

@@ -32,7 +32,12 @@ export const BookDetailModal = ({ book, onClose }) => {
   };
 
   const handleShare = () => {
-    navigator.clipboard.writeText(window.location.href);
+    try {
+      if (typeof navigator !== 'undefined' && navigator.clipboard) {
+        const url = typeof window !== 'undefined' && window.location ? window.location.href : '';
+        navigator.clipboard.writeText(url);
+      }
+    } catch (e) { /* clipboard not available on native */ }
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
   };

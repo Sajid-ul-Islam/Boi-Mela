@@ -49,10 +49,7 @@ export const Header = () => {
       top: 0,
       zIndex: 900
     }}>
-      <div style={{
-        maxWidth: '1300px',
-        margin: '0 auto',
-        padding: '12px 16px',
+      <div className="header-inner" style={{
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'space-between',
@@ -123,7 +120,7 @@ export const Header = () => {
             title={lang === 'bn' ? 'বইমেলার ম্যাপ দেখুন' : 'View Fair Map'}
           >
             <Map size={16} color="var(--accent-gold)" />
-            <span style={{ display: 'none', '@media (min-width: 640px)': { display: 'inline' } }}>
+            <span className="map-btn-label">
               {lang === 'bn' ? 'ম্যাপ' : 'Map'}
             </span>
           </button>

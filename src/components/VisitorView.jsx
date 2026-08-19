@@ -203,7 +203,7 @@ export const VisitorView = () => {
               </button>
             </div>
           ) : (
-            <div style={{
+            <div className="book-grid" style={{
               display: 'grid',
               gridTemplateColumns: 'repeat(auto-fill, minmax(240px, 1fr))',
               gap: '24px'
@@ -327,7 +327,7 @@ export const VisitorView = () => {
 
       {/* ----------------- STALLS DIRECTORY TAB ----------------- */}
       {activeTab === 'stalls' && (
-        <div style={{
+        <div className="stall-grid" style={{
           display: 'grid',
           gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))',
           gap: '24px'
@@ -423,7 +423,7 @@ export const VisitorView = () => {
               </button>
             </div>
           ) : (
-            <div style={{
+            <div className="wishlist-grid" style={{
               display: 'grid',
               gridTemplateColumns: 'repeat(auto-fill, minmax(240px, 1fr))',
               gap: '24px'
