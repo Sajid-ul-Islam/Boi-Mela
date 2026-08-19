@@ -299,62 +299,94 @@ html, body {
   border: 1px solid rgba(13, 148, 136, 0.4);
 }
 
-/* ===================== RESPONSIVE ===================== */
+/* ===================== RESPONSIVE / FLUID SCALE ===================== */
+
+/* Fluid root type scale: everything built on rem now breathes with the viewport.
+   clamp(MIN, PREFERRED, MAX) keeps text readable on phones but larger on big screens. */
+:root {
+  font-size: clamp(14px, 0.55vw + 12px, 17px);
+}
+
+/* The hero / splash uses fixed inline font sizes — override them with fluid clamps
+   so they scale smoothly instead of snapping at a single breakpoint. */
+.splash-hero {
+  padding: clamp(24px, 4vw, 48px) clamp(16px, 3vw, 32px) !important;
+}
+.splash-hero h2 {
+  /* inline style sets 2.5rem; clamp keeps it proportional */
+  font-size: clamp(1.6rem, 4.2vw, 2.75rem) !important;
+  line-height: 1.15 !important;
+  word-break: break-word;
+}
+.splash-hero p {
+  font-size: clamp(0.9rem, 1.6vw, 1.05rem) !important;
+}
+.splash-metrics {
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)) !important;
+  gap: clamp(8px, 1.5vw, 16px) !important;
+  padding: clamp(12px, 2vw, 20px) !important;
+}
+.splash-metrics > div > div:first-child {
+  font-size: clamp(1.1rem, 2.4vw, 1.6rem) !important;
+  font-weight: 800;
+}
+.splash-metrics > div > div:last-child {
+  font-size: clamp(0.62rem, 1.1vw, 0.78rem) !important;
+}
+
+/* Header title scales fluidly */
+.header-inner h1 {
+  font-size: clamp(1rem, 1.4vw + 0.6rem, 1.35rem) !important;
+  line-height: 1.1 !important;
+}
+
+/* Generic fluid headings for any inline-styled h2/h3 inside content */
+.main-content h2 { font-size: clamp(1.4rem, 3vw, 2rem) !important; }
+.main-content h3 { font-size: clamp(1.05rem, 2vw, 1.35rem) !important; }
+
+/* ---- Breakpoints ---- */
+
+/* Large desktop: a touch more breathing room */
+@media (min-width: 1600px) {
+  .main-content { max-width: 1600px; padding: clamp(24px, 2vw, 40px); }
+  .header-inner { max-width: 1600px; }
+}
 
 /* Tablet & down: header actions wrap, search goes full width */
 @media (max-width: 900px) {
-  .header-inner {
-    flex-wrap: wrap;
-  }
+  .header-inner { flex-wrap: wrap; }
   .header-inner > div[style*="flex: 1"] {
     flex-basis: 100%;
     order: 3;
     max-width: 100%;
+    min-width: 0;
   }
 }
 
-/* Mobile: compact header, hide map button text, smaller title */
+/* Mobile: compact header, hide map button text, stack search above actions */
 @media (max-width: 640px) {
-  .map-btn-label {
-    display: none;
-  }
-  .header-inner h1 {
-    font-size: 1.05rem !important;
-  }
-  .header-inner > div[style*="cursor: pointer"] span[style*="0.75rem"] {
-    display: none;
-  }
+  .map-btn-label { display: none; }
+  .header-inner { padding: 10px 14px; gap: 10px; }
+  .header-inner > div[style*="cursor: pointer"] span[style*="0.75rem"] { display: none; }
+  .app-container { min-height: 100vh; }
+  /* let header action buttons wrap instead of squeezing */
+  .header-inner > div:last-child { flex-wrap: wrap; }
 }
 
-/* Hero / Splash */
-@media (max-width: 768px) {
-  .splash-hero {
-    padding: 24px 16px !important;
-  }
-  .splash-hero h2 {
-    font-size: 1.8rem !important;
-  }
-  .splash-hero p {
-    font-size: 0.95rem !important;
-  }
-  .splash-metrics {
-    grid-template-columns: repeat(3, 1fr) !important;
-    gap: 8px !important;
-    padding: 12px !important;
-  }
-  .splash-metrics > div > div:first-child {
-    font-size: 1.1rem !important;
-  }
-  .splash-metrics > div > div:last-child {
-    font-size: 0.68rem !important;
-  }
-}
-
-/* Mobile grids: single column so cards are full width */
+/* Small phones: single-column grids, tighter paddings, full-width cards */
 @media (max-width: 520px) {
   .book-grid,
   .stall-grid,
   .wishlist-grid {
     grid-template-columns: 1fr !important;
   }
+  .main-content { padding: 14px 12px; }
+  .splash-metrics { grid-template-columns: repeat(2, 1fr) !important; }
+}
+
+/* Very small phones: keep type from overflowing, shrink paddings further */
+@media (max-width: 380px) {
+  .header-inner h1 { font-size: 0.95rem !important; }
+  .splash-hero h2 { font-size: 1.45rem !important; }
+  .main-content { padding: 10px 8px; }
 }
