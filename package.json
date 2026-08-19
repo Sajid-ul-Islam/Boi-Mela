@@ -4,7 +4,7 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "start": "expo start",
+    "start": "expo start --web --port 8000",
     "web": "expo start --web",
     "android": "expo start --android",
     "build:web": "expo export -p web",
