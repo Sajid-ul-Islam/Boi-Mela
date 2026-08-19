@@ -1,0 +1,27 @@
+{
+  "expo": {
+    "name": "অমর একুশে বইমেলা (Boi Mela)",
+    "slug": "boi-mela",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "dark",
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true
+    },
+    "android": {
+      "package": "com.boimela.app",
+      "permissions": [
+        "INTERNET",
+        "ACCESS_NETWORK_STATE",
+        "VIBRATE"
+      ]
+    },
+    "web": {
+      "bundler": "metro",
+      "title": "অমর একুশে বইমেলা | Amar Ekushey Boi Mela"
+    }
+  }
+}
