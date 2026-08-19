@@ -8,7 +8,8 @@
     "web": "expo start --web",
     "android": "expo start --android",
     "build:web": "expo export -p web",
-    "build:apk": "eas build -p android --profile preview"
+    "build:apk": "npx eas-cli build -p android --profile preview",
+    "login": "npx eas-cli login"
   },
   "dependencies": {
     "canvas-confetti": "^1.9.4",
@@ -21,6 +22,8 @@
     "react-native-web": "~0.19.10"
   },
   "devDependencies": {
-    "@expo/metro-runtime": "~3.1.3"
+    "@expo/config-plugins": "~7.8.0",
+    "@expo/metro-runtime": "~3.1.3",
+    "@expo/prebuild-config": "~6.7.0"
   }
 }

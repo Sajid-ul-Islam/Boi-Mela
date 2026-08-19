@@ -5,6 +5,10 @@
     "version": "1.0.0",
     "orientation": "portrait",
     "userInterfaceStyle": "dark",
+    "splash": {
+      "backgroundColor": "#0b0f19",
+      "resizeMode": "contain"
+    },
     "assetBundlePatterns": [
       "**/*"
     ],
@@ -22,6 +26,11 @@
     "web": {
       "bundler": "metro",
       "title": "অমর একুশে বইমেলা | Amar Ekushey Boi Mela"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "e22b9f4d-13ae-4f8e-bd3f-55c01b2cf6ea"
+      }
     }
   }
 }
