@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useApp } from '../context/AppContext';
-import { Button, Check, Compass, Div, H3, Header, Info, Input, Map, MapPin, Search, Span, Store, X } from '../html';
+import { Button, Check, Compass, Div, H3, Info, Input, Map, MapPin, Search, Span, Store, X } from '../html';
 
 export const InteractiveMap = ({ onClose }) => {
   const { lang, stalls, setSelectedStall } = useApp();

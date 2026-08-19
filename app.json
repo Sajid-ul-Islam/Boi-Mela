@@ -25,7 +25,6 @@
     },
     "web": {
       "bundler": "metro",
-      "entryPoint": "./index.web.js",
       "title": "অমর একুশে বইমেলা | Amar Ekushey Boi Mela"
     },
     "extra": {

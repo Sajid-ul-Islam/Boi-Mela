@@ -11,6 +11,7 @@ import { InteractiveMap } from './components/InteractiveMap';
 import { NotificationDrawer } from './components/NotificationDrawer';
 import { Toast } from './components/Toast';
 import { Footer } from './components/Footer';
+import { BottomNav } from './components/BottomNav';
 
 export function AppContent() {
   const { 
@@ -91,6 +92,9 @@ export function AppContent() {
 
       {/* Global Toast Container */}
       <Toast />
+
+      {/* Mobile & Android Bottom Navigation Bar */}
+      <BottomNav />
 
     </Div>
   );

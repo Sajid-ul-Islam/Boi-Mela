@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useApp } from '../context/AppContext';
-import { BellRing, BookOpen, Button, Div, H2, H3, Header, Img, Input, Mail, MapPin, Phone, Plus, Span, Sparkles, Store, Users, X } from '../html';
+import { BellRing, BookOpen, Button, Div, H2, H3, Img, Input, Mail, MapPin, P, Phone, Plus, Span, Sparkles, Store, Users, X } from '../html';
 
 export const StallDetailModal = ({ stall, onClose }) => {
   const { 

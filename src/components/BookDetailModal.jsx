@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useApp } from '../context/AppContext';
-import { BellRing, Button, Check, Div, H2, Header, Heart, Img, Info, Input, Label, Map, MapPin, Share2, Span, Star, Store, Tag, UserPlus, X } from '../html';
+import { BellRing, Button, Check, Div, H2, Heart, Img, Info, Input, Label, Map, MapPin, P, Share2, Span, Star, Store, Tag, UserPlus, X } from '../html';
 
 export const BookDetailModal = ({ book, onClose }) => {
   const { 

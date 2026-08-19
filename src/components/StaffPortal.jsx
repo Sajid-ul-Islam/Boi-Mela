@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useApp } from '../context/AppContext';
-import { AlertCircle, BookOpen, Button, CheckCircle2, Div, Edit3, H2, H3, Img, Info, Input, Label, Lock, LogOut, Mail, MapPin, Plus, Select, Send, Span, Sparkles, Store, Table, Td, Textarea, Th, Tr, Trash2, User, Users } from '../html';
+import { AlertCircle, BookOpen, Button, CheckCircle2, Div, Edit3, H2, H3, Img, Info, Input, Label, Lock, LogOut, Mail, MapPin, P, Plus, Select, Send, Span, Sparkles, Store, Table, Td, Textarea, Th, Tr, Trash2, User, Users } from '../html';
 
 export const StaffPortal = () => {
   const { 

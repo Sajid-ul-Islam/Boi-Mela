@@ -69,6 +69,7 @@ export const AppProvider = ({ children }) => {
   });
 
   // UI state
+  const [activeTab, setActiveTab] = useState('books'); // 'books' | 'stalls' | 'wishlist'
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedGenre, setSelectedGenre] = useState('All');
   const [selectedBook, setSelectedBook] = useState(null);
@@ -298,6 +299,7 @@ export const AppProvider = ({ children }) => {
     <AppContext.Provider value={{
       userRole, setUserRole,
       currentView, setCurrentView,
+      activeTab, setActiveTab,
       staffUser, loginStaff, logoutStaff,
       stalls, books, observers, announcements, wishlist,
       searchQuery, setSearchQuery,

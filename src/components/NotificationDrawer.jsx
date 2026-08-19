@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useApp } from '../context/AppContext';
-import { Bell, BellOff, Button, CheckCircle, Div, H3, H4, Header, Mail, Span, Sparkles, Store, Trash2, Volume2, VolumeX, X } from '../html';
+import { Bell, BellOff, Button, CheckCircle, Div, H3, H4, Mail, P, Span, Sparkles, Store, Trash2, Volume2, VolumeX, X } from '../html';
 
 export const NotificationDrawer = ({ onClose }) => {
   const { 

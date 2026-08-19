@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useApp } from '../context/AppContext';
-import { ArrowUpDown, BellRing, BookOpen, Button, Div, Eye, Filter, H3, H4, Heart, Img, Info, MapPin, PlusCircle, Search, Select, Span, Sparkles, Star, Store, X } from '../html';
+import { ArrowUpDown, BellRing, BookOpen, Button, Div, Eye, Filter, H3, H4, Heart, Img, Info, MapPin, P, PlusCircle, Search, Select, Span, Sparkles, Star, Store, X } from '../html';
 
 export const VisitorView = () => {
   const { 
@@ -14,10 +14,11 @@ export const VisitorView = () => {
     setSelectedStall,
     toggleWishlist,
     subscribeObserver,
-    setIsMapOpen
+    setIsMapOpen,
+    activeTab,
+    setActiveTab
   } = useApp();
 
-  const [activeTab, setActiveTab] = useState('books'); // 'books' | 'stalls' | 'wishlist'
   const [sortBy, setSortBy] = useState('popular'); // 'popular' | 'price-asc' | 'price-desc' | 'name'
 
   const genres = [
