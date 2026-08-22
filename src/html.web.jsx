@@ -17,7 +17,7 @@ export const Select = ({ value, onChange, options, style, ...rest }) => (
   </select>
 );
 
-const USED_ICONS = ['AlertCircle', 'ArrowUpDown', 'Bell', 'BellOff', 'BellRing', 'BookOpen', 'Check', 'CheckCircle', 'CheckCircle2', 'ChevronRight', 'Compass', 'Edit3', 'Eye', 'Filter', 'Globe', 'Heart', 'Info', 'Lock', 'LogOut', 'Mail', 'Map', 'MapPin', 'Moon', 'Navigation', 'Phone', 'Plus', 'PlusCircle', 'Search', 'Send', 'Share2', 'ShieldCheck', 'Sparkles', 'Star', 'Store', 'Sun', 'Tag', 'Trash2', 'User', 'UserCheck', 'UserPlus', 'Users', 'Volume2', 'VolumeX', 'X'];
+const USED_ICONS = ['AlertCircle', 'ArrowUpDown', 'Bell', 'BellOff', 'BellRing', 'BookOpen', 'Check', 'CheckCircle', 'CheckCircle2', 'ChevronRight', 'Compass', 'Edit3', 'Eye', 'Filter', 'Globe', 'Heart', 'Info', 'Lock', 'LogOut', 'Mail', 'Map', 'MapPin', 'MessageCircle', 'Moon', 'Navigation', 'Phone', 'Plus', 'PlusCircle', 'Search', 'Send', 'Share2', 'ShieldCheck', 'Sparkles', 'Star', 'Store', 'Sun', 'Tag', 'Trash2', 'User', 'UserCheck', 'UserPlus', 'Users', 'Volume2', 'VolumeX', 'X'];
 const iconExports = {};
 USED_ICONS.forEach((name) => {
   const Glyph = Lucide[name];
@@ -47,6 +47,7 @@ export const LogOut = iconExports['LogOut'];
 export const Mail = iconExports['Mail'];
 export const Map = iconExports['Map'];
 export const MapPin = iconExports['MapPin'];
+export const MessageCircle = iconExports['MessageCircle'];
 export const Moon = iconExports['Moon'];
 export const Navigation = iconExports['Navigation'];
 export const Phone = iconExports['Phone'];

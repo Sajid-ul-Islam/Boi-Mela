@@ -12,6 +12,7 @@ import { NotificationDrawer } from './components/NotificationDrawer';
 import { Toast } from './components/Toast';
 import { Footer } from './components/Footer';
 import { BottomNav } from './components/BottomNav';
+import { ChatWidget } from './components/ChatWidget';
 
 export function AppContent() {
   const { 
@@ -21,13 +22,14 @@ export function AppContent() {
     selectedStall, setSelectedStall,
     isMapOpen, setIsMapOpen,
     isNotificationDrawerOpen, setIsNotificationDrawerOpen,
-    darkMode
+    darkMode,
+    theme
   } = useApp();
 
   const [showHeroBanner, setShowHeroBanner] = useState(true);
 
   return (
-    <Div className={`app-container ${darkMode ? '' : 'light-theme'}`}>
+    <Div className={`app-container theme-${theme}`} data-theme={theme} style={{ background: 'var(--bg-primary)', color: 'var(--text-main)' }}>
       
       {/* Header Bar */}
       <Header />
@@ -95,6 +97,9 @@ export function AppContent() {
 
       {/* Mobile & Android Bottom Navigation Bar */}
       <BottomNav />
+
+      {/* Floating Visitor <-> Stall Chat Widget */}
+      <ChatWidget />
 
     </Div>
   );

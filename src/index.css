@@ -36,10 +36,58 @@
   --bg-secondary: #f1f5f9;
   --bg-card: rgba(255, 255, 255, 0.85);
   --bg-card-hover: rgba(255, 255, 255, 0.98);
+  --primary-red: #d92638;
+  --primary-red-hover: #b81c2c;
+  --accent-gold: #d97706;
+  --accent-teal: #0d9488;
+  --accent-teal-light: #14b8a6;
   --text-main: #0f172a;
   --text-muted: #64748b;
   --border-color: rgba(0, 0, 0, 0.08);
+  --border-glow: rgba(217, 38, 56, 0.25);
   --shadow-lg: 0 10px 30px rgba(0, 0, 0, 0.08);
+}
+
+/* Ocean theme — cool teal/blue night */
+.theme-ocean {
+  --bg-primary: #071a2b;
+  --bg-secondary: #0b2336;
+  --bg-card: rgba(14, 51, 78, 0.7);
+  --bg-card-hover: rgba(20, 66, 99, 0.82);
+  --primary-red: #0ea5e9;
+  --primary-red-hover: #0284c7;
+  --accent-gold: #14b8a6;
+  --accent-teal: #06b6d4;
+  --accent-teal-light: #22d3ee;
+  --text-main: #e6f4fb;
+  --text-muted: #8fb3c7;
+  --text-dark: #071a2b;
+  --border-color: rgba(255, 255, 255, 0.1);
+  --border-glow: rgba(14, 165, 233, 0.45);
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.25);
+  --shadow-lg: 0 10px 30px rgba(0, 0, 0, 0.5);
+  --shadow-gold: 0 0 20px rgba(20, 184, 166, 0.22);
+}
+
+/* Solar theme — warm amber/rose dusk */
+.theme-solar {
+  --bg-primary: #1c1012;
+  --bg-secondary: #2a161a;
+  --bg-card: rgba(54, 28, 30, 0.7);
+  --bg-card-hover: rgba(70, 36, 38, 0.82);
+  --primary-red: #ef4444;
+  --primary-red-hover: #dc2626;
+  --accent-gold: #f59e0b;
+  --accent-teal: #f97316;
+  --accent-teal-light: #fb923c;
+  --text-main: #fff4ec;
+  --text-muted: #d6a99a;
+  --text-dark: #1c1012;
+  --border-color: rgba(255, 255, 255, 0.1);
+  --border-glow: rgba(245, 158, 11, 0.45);
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.25);
+  --shadow-lg: 0 10px 30px rgba(0, 0, 0, 0.5);
+  --shadow-gold: 0 0 20px rgba(245, 158, 11, 0.25);
 }
 
 * {
@@ -433,6 +481,29 @@ body {
 .main-content h2 { font-size: clamp(1.4rem, 3vw, 2rem) !important; }
 .main-content h3 { font-size: clamp(1.05rem, 2vw, 1.35rem) !important; }
 
+/* Fluid app title (no more overflow / static sizing) */
+.app-title {
+  font-size: clamp(1rem, 1.3vw + 0.6rem, 1.35rem) !important;
+  font-weight: 700 !important;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.app-subtitle {
+  display: block;
+  font-size: clamp(0.62rem, 0.9vw + 0.4rem, 0.75rem) !important;
+  color: var(--accent-gold) !important;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Smooth theme cross-fade for the whole app */
+.app-container,
+.app-container * {
+  transition: background-color var(--transition-smooth), border-color var(--transition-smooth), color var(--transition-smooth);
+}
+
 /* ---- Breakpoints ---- */
 
 /* Large desktop: a touch more breathing room */
@@ -459,7 +530,11 @@ body {
   .header-inner > div[style*="cursor: pointer"] span[style*="0.75rem"] { display: none; }
   .app-container { min-height: 100vh; }
   /* let header action buttons wrap instead of squeezing */
-  .header-inner > div:last-child { flex-wrap: wrap; }
+  .header-inner > div:last-child { flex-wrap: wrap; justify-content: flex-end; }
+  /* hide the subtitle under the title on small screens to save space */
+  .app-subtitle { display: none; }
+  /* keep the chat launcher clear of the bottom nav on phones */
+  .chat-launcher-bottom { bottom: calc(80px + env(safe-area-inset-bottom, 0px)); }
 }
 
 /* Small phones: single-column grids, tighter paddings, full-width cards */

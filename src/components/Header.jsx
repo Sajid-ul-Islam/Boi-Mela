@@ -1,6 +1,7 @@
 import React from 'react';
 import { useApp } from '../context/AppContext';
 import { Bell, BookOpen, Button, Div, Globe, H1, HeaderEl, Heart, Input, Map, Moon, Search, Span, Sparkles, Store, Sun, UserCheck, Users } from '../html';
+import { ThemeSwitcher } from './ThemeSwitcher';
 
 export const Header = () => {
   const { 
@@ -13,7 +14,7 @@ export const Header = () => {
     setIsWishlistOpen,
     setIsNotificationDrawerOpen,
     lang, setLang,
-    darkMode, setDarkMode,
+    theme, setTheme,
     setCurrentView, currentView
   } = useApp();
 
@@ -60,11 +61,11 @@ export const Header = () => {
           }}>
             <BookOpen size={24} color="#ffffff" />
           </Div>
-          <Div>
-            <H1 style={{ fontSize: '1.25rem', fontWeight: 700, margin: 0, lineHeight: 1.1 }}>
+          <Div style={{ minWidth: 0 }}>
+            <H1 className="app-title" style={{ margin: 0, lineHeight: 1.1 }}>
               {lang === 'bn' ? 'অমর একুশে বইমেলা' : 'Amar Ekushey Boi Mela'}
             </H1>
-            <Span style={{ fontSize: '0.75rem', color: 'var(--accent-gold)', fontWeight: 600 }}>
+            <Span className="app-subtitle" style={{ fontWeight: 600 }}>
               {lang === 'bn' ? 'ডিজিটাল স্টল ডিরেক্টরি ও সার্চ' : 'Digital Directory & Observer Hub'}
             </Span>
           </Div>
@@ -199,13 +200,8 @@ export const Header = () => {
             <Span>{lang === 'bn' ? 'EN' : 'বাং'}</Span>
           </Button>
 
-          {/* Theme Toggle */}
-          <Button 
-            className="btn btn-secondary btn-icon"
-            onPress={() => setDarkMode(!darkMode)}
-          >
-            {darkMode ? <Sun size={18} color="var(--accent-gold)" /> : <Moon size={18} />}
-          </Button>
+          {/* Theme Switcher: Midnight / Light / Ocean / Solar */}
+          <ThemeSwitcher />
 
         </Div>
       </Div>

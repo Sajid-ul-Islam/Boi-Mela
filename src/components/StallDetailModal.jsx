@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useApp } from '../context/AppContext';
-import { BellRing, BookOpen, Button, Div, H2, H3, Img, Input, Mail, MapPin, P, Phone, Plus, Span, Sparkles, Store, Users, X } from '../html';
+import { BellRing, BookOpen, Button, Div, H2, H3, Img, Input, Mail, MapPin, MessageCircle, P, Phone, Plus, Span, Sparkles, Store, Users, X } from '../html';
 
 export const StallDetailModal = ({ stall, onClose }) => {
   const { 
@@ -9,7 +9,9 @@ export const StallDetailModal = ({ stall, onClose }) => {
     observers, 
     subscribeObserver, 
     setSelectedBook,
-    setIsMapOpen
+    setIsMapOpen,
+    setActiveChatStallId,
+    setChatOpen
   } = useApp();
 
   const [email, setEmail] = useState('');
@@ -143,6 +145,20 @@ export const StallDetailModal = ({ stall, onClose }) => {
               <Span>{lang === 'bn' ? 'ফলো করুন' : 'Subscribe'}</Span>
             </Button>
           </form>
+
+          {/* Message this stall (opens floating chat) */}
+          <Button
+            onPress={() => {
+              setActiveChatStallId(stall.id);
+              setChatOpen(true);
+              onClose();
+            }}
+            className="btn btn-secondary"
+            style={{ width: '100%', marginBottom: '32px', justifyContent: 'center' }}
+          >
+            <MessageCircle size={18} color="var(--accent-gold)" />
+            <Span>{lang === 'bn' ? 'এই স্টলের সাথে চ্যাট করুন' : 'Chat with this stall'}</Span>
+          </Button>
 
           {/* Published Books Grid */}
           <H3 style={{ fontSize: '1.25rem', fontWeight: 700, marginBottom: '16px', display: 'flex', alignItems: 'center', gap: '8px' }}>

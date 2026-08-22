@@ -83,7 +83,20 @@ export const AppProvider = ({ children }) => {
 
   // Settings
   const [lang, setLang] = useState('bn'); // 'bn' | 'en'
-  const [darkMode, setDarkMode] = useState(true);
+  // Multi-theme system: 'midnight' (Ekushey dark) | 'light' | 'ocean' | 'solar'
+  const [theme, setTheme] = useState(() => {
+    return safeStorage.getItem('boimela_theme') || 'midnight';
+  });
+
+  // Visitor <-> Stall chat store (mock, local-only)
+  const [chats, setChats] = useState(() => {
+    const saved = safeStorage.getItem('boimela_chats');
+    return saved ? JSON.parse(saved) : {};
+  });
+  // which stall's chat panel is open (null = floating widget closed)
+  const [activeChatStallId, setActiveChatStallId] = useState(null);
+  // whether the floating chat panel is expanded
+  const [chatOpen, setChatOpen] = useState(false);
 
   // Synchronize LocalStorage
   useEffect(() => {
@@ -109,6 +122,14 @@ export const AppProvider = ({ children }) => {
   useEffect(() => {
     safeStorage.setItem('boimela_role', userRole);
   }, [userRole]);
+
+  useEffect(() => {
+    safeStorage.setItem('boimela_theme', theme);
+  }, [theme]);
+
+  useEffect(() => {
+    safeStorage.setItem('boimela_chats', JSON.stringify(chats));
+  }, [chats]);
 
   useEffect(() => {
     if (staffUser) {
@@ -295,6 +316,46 @@ export const AppProvider = ({ children }) => {
     addToast(lang === 'bn' ? 'লগআউট করা হয়েছে' : 'Logged out', 'info');
   };
 
+  // ---- Chat actions (Visitor <-> Stall) ----
+  // Returns the conversation thread for a stall id.
+  const getChat = (stallId) => chats[stallId] || [];
+
+  // Visitor sends a message to a stall. A canned publisher reply is appended
+  // to simulate a live conversation (mock backend).
+  const sendChatMessage = (stallId, text) => {
+    const trimmed = text.trim();
+    if (!trimmed) return;
+    const stall = stalls.find(s => s.id === stallId);
+    const time = new Date().toLocaleTimeString('bn-BD', { hour: '2-digit', minute: '2-digit' });
+    const visitorMsg = { id: 'm' + Date.now(), from: 'visitor', text: trimmed, time };
+
+    setChats(prev => {
+      const thread = prev[stallId] ? [...prev[stallId], visitorMsg] : [visitorMsg];
+      // simulated publisher auto-reply
+      const reply = {
+        id: 'm' + (Date.now() + 1),
+        from: 'stall',
+        text: lang === 'bn'
+          ? `ধন্যবাদ! আমাদের "${stall ? stall.name : 'স্টল'}" এ স্বাগতম। আপনার প্রশ্নটি আমরা শিগগিরই দেখব।`
+          : `Thank you! Welcome to "${stall ? stall.name : 'our stall'}". We'll get back to you shortly.`,
+        time: new Date().toLocaleTimeString('bn-BD', { hour: '2-digit', minute: '2-digit' })
+      };
+      return { ...prev, [stallId]: [...thread, reply] };
+    });
+  };
+
+  const clearChat = (stallId) => {
+    setChats(prev => {
+      const next = { ...prev };
+      delete next[stallId];
+      return next;
+    });
+    addToast(lang === 'bn' ? 'আলাপচারিতা মুছে ফেলা হয়েছে' : 'Chat cleared', 'info');
+  };
+
+  // derived for backward-compatible consumers
+  const darkMode = theme !== 'light';
+
   return (
     <AppContext.Provider value={{
       userRole, setUserRole,
@@ -313,7 +374,10 @@ export const AppProvider = ({ children }) => {
       toggleWishlist, subscribeObserver, unsubscribeObserver, toggleObserverNotification,
       addBook, deleteBook, updateStallInfo, sendBroadcastMessage,
       lang, setLang,
-      darkMode, setDarkMode
+      theme, setTheme, darkMode,
+      chats, getChat, sendChatMessage, clearChat,
+      activeChatStallId, setActiveChatStallId,
+      chatOpen, setChatOpen
     }}>
       {children}
     </AppContext.Provider>
